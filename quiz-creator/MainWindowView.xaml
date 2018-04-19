@@ -1,0 +1,46 @@
+﻿<Window x:Class="QuizCreator.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizCreator"
+        xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
+        xmlns:views="clr-namespace:QuizCreator.Views"
+        Title="QuizSolver" Height="350" Width="525" Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico" >
+   
+    <Window.Resources>
+        <DataTemplate x:Name="quizListViewTemplate" DataType="{x:Type viewmodels:QuizListViewModel}">
+            <views:QuizListView />
+        </DataTemplate>
+        <DataTemplate x:Name="quizQuestionsViewTemplate" DataType="{x:Type viewmodels:QuizQuestionsViewModel}">
+            <views:QuizQuestionsView />
+        </DataTemplate>
+        <DataTemplate x:Name="quizStartViewTemplate" DataType="{x:Type viewmodels:QuizStartViewModel}">
+            <views:QuizStartView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="0,2,0,-2.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1">
+            <TextBlock FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
+        </DockPanel>
+
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Content="{Binding CurrentPageViewModel, Mode=TwoWay}"/>
+    </Grid>
+</Window>
