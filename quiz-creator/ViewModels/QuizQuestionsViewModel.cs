@@ -10,16 +10,18 @@ namespace QuizCreator.ViewModels
 {
     public class QuizQuestionsViewModel : ObservableObject, IPageViewModel
     {
+        private string name;
         public string Name
         {
             get
             {
-                return "Questions";
+                return name;
             }
 
             set
             {
-                Name = value;
+                name = value;
+                RaisePropertyChanged("Name");
             }
         }
     }

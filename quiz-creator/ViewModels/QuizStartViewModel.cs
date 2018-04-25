@@ -14,16 +14,19 @@ namespace QuizCreator.ViewModels
         #region Fields
         #endregion
         #region Properties
+
+        private string name;
         public string Name
         {
             get
             {
-                return "Start";
+                return name;
             }
             
             set
             {
-                Name = value;
+                name = value;
+                RaisePropertyChanged("Name");
             }
         }
 
