@@ -65,6 +65,14 @@ namespace QuizCreator.ViewModels
                 param => true);
             }
         }
+        public ICommand DisplayQuizQuestionsViewCommand
+        {
+            get
+            {
+                return new RelayCommand(action => CurrentPageViewModel = new QuizQuestionsViewModel(),
+                param => true);
+            }
+        }
 
         public List<IPageViewModel> PageViewModels
         {
