@@ -12,10 +12,11 @@ namespace QuizCreator.ViewModels
     public class QuizStartViewModel : ObservableObject, IPageViewModel
     {
         #region Fields
+        private string name;
         #endregion
         #region Properties
 
-        private string name;
+
         public string Name
         {
             get
@@ -26,15 +27,9 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                RaisePropertyChanged("Name");
+                OnPropertyChanged("Name");
             }
         }
-
-
-
-
-
         #endregion
-
     }
 }

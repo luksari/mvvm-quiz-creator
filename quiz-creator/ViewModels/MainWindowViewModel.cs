@@ -27,6 +27,7 @@ namespace QuizCreator.ViewModels
             PageViewModels.Add(new QuizStartViewModel());
             PageViewModels.Add(new QuizListViewModel());
             PageViewModels.Add(new QuizQuestionsViewModel());
+            PageViewModels.Add(new QuizAnswersViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
@@ -48,11 +49,19 @@ namespace QuizCreator.ViewModels
                 return _changePageCommand;
             }
         }
-        public ICommand DisplayQuizNameViewCommand
+        public ICommand DisplayQuizListViewCommand
         {
             get
             {
                 return new RelayCommand(action => CurrentPageViewModel = new QuizListViewModel(),
+                param => true);
+            }
+        }
+        public ICommand DisplayQuizAnswersViewCommand
+        {
+            get
+            {
+                return new RelayCommand(action => CurrentPageViewModel = new QuizAnswersViewModel(),
                 param => true);
             }
         }
@@ -96,10 +105,7 @@ namespace QuizCreator.ViewModels
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);
         }
-        private void OnStartButtonClicked(object obj)
-        {
-            CurrentPageViewModel = new QuizStartViewModel();
-        }
+
 
         #endregion
     }

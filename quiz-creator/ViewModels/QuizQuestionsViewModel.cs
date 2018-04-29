@@ -21,7 +21,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                RaisePropertyChanged("Name");
+                OnPropertyChanged("Name");
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using QuizCreator.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +16,13 @@ using System.Windows.Shapes;
 namespace QuizCreator.Views
 {
     /// <summary>
-    /// Interaction logic for QuizNameView.xaml
+    /// Interaction logic for QuizAnswersView.xaml
     /// </summary>
-    public partial class QuizListView : UserControl
+    public partial class QuizAnswersView : UserControl
     {
-        public QuizListView()
+        public QuizAnswersView()
         {
             InitializeComponent();
-            QuizListViewModel qlvm = new QuizListViewModel();
-            this.DataContext = qlvm;
         }
-
     }
 }

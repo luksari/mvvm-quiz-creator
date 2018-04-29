@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:QuizCreator"
         xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
         xmlns:views="clr-namespace:QuizCreator.Views"
-        Title="QuizSolver" Height="350" Width="525" Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico" >
-   
+        Title="QuizSolver" Height="350" Width="525" 
+        Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico" >
+
+
     <Window.Resources>
         <DataTemplate x:Name="quizListViewTemplate" DataType="{x:Type viewmodels:QuizListViewModel}">
             <views:QuizListView />
@@ -17,6 +19,9 @@
         </DataTemplate>
         <DataTemplate x:Name="quizStartViewTemplate" DataType="{x:Type viewmodels:QuizStartViewModel}">
             <views:QuizStartView />
+        </DataTemplate>
+        <DataTemplate x:Name="quizAnswerViewTemplate" DataType="{x:Type viewmodels:QuizAnswersViewModel}">
+            <views:QuizAnswersView />
         </DataTemplate>
     </Window.Resources>
 

@@ -1,17 +1,22 @@
 ﻿using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuizCreator.Models
 {
-    public class Model: ObservableObject
+    public class QuizListModel: ObservableObject
     {
-        List<QuizModel> quizesList;
+        #region Fields
+        private ObservableCollection<QuizModel> quizesList;
 
-        public List<QuizModel> QuizesList
+        #endregion
+
+        #region Properties
+        public ObservableCollection<QuizModel> QuizesList
         {
             get
             {
@@ -27,5 +32,7 @@ namespace QuizCreator.Models
                 }
             }
         }
+        #endregion
+        
     }
 }

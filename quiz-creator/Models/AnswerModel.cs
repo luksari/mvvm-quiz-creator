@@ -10,10 +10,12 @@ namespace QuizCreator.Models
 {
     public class AnswerModel : ObservableObject
     {
+        #region Fields
         private string name;
         private bool isValid;
         private int answerId;
-
+        #endregion
+        #region Properties
         public string Name
         {
             get
@@ -66,5 +68,6 @@ namespace QuizCreator.Models
                 
             }
         }
+        #endregion
     }
 }

@@ -6,29 +6,9 @@
              xmlns:local="clr-namespace:QuizCreator.Views"
              xmlns:models="clr-namespace:QuizCreator.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type models:QuizModel}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Name="dateBlock" Grid.Column="0" Grid.Row="1"
-                    Text="{Binding Date,  StringFormat=d}"></TextBlock>
-                <TextBlock Name="TimeBlock" Grid.Column="1" Grid.Row="1"
-                    Text="{Binding Time}"></TextBlock>
-                <Button>X</Button>
-            </Grid>
-        </DataTemplate>
-    </UserControl.Resources>
-    
-    
+             d:DesignHeight="400
+             " d:DesignWidth="500
+             ">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -49,32 +29,42 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <StackPanel >
-                <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" SelectionBrush="#7200D70A" Foreground="Gray" Text="Enter quiz name..."/>
-                <Button  Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Add Quiz" FontSize="36" Width="500" Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black">
+                <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
+                         SelectionBrush="#7200D70A" Foreground="Gray" Text="{Binding Path=Name, Mode=TwoWay}"
+                         />
+                <Button
+                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Add Quiz" FontSize="36" Width="500" 
+                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"     
+                    Command="{Binding AddCmd}"
+                    >
                 </Button>
-                <ListView  Margin="0,25,0,0" Width="500" Height="300" ItemsSource="{Binding Path=AllQuizes}">
+                <ListView  Margin="0,25,0,0" Width="500" Height="300" 
+                           ItemsSource="{Binding QuizList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Name="dateBlock" Grid.Column="0" Grid.Row="1"
-                                    Text="{Binding Date}"></TextBlock>
-                                <TextBlock Name="TimeBlock" Grid.Column="1" Grid.Row="1"
-                                    Text="{Binding Time}"></TextBlock>
-                                <Button>X</Button>
-                            </Grid>
+                            <Border>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontSize="16" Margin="0,0,25,0" Text="{Binding QuizId}"/>
+                                    <TextBlock Grid.Column="1" FontSize="16" Text="{Binding Name}"/>
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-
+             
             </StackPanel>
         </DockPanel>
     </Grid>
