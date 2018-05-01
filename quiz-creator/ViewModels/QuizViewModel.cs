@@ -13,8 +13,15 @@ namespace QuizCreator.ViewModels
     public class QuizViewModel : ObservableObject, IPageViewModel
     {
         private string name;
-        private int quizId;
+        private Guid quizId;
         private ObservableCollection<QuestionModel> questionsList;
+        public string PageName
+        {
+            get
+            {
+                return "Quiz";
+            }
+        }
 
         public string Name
         {
@@ -31,7 +38,7 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public int QuizId
+        public Guid QuizId
         {
             get
             {

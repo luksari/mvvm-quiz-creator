@@ -9,35 +9,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <!-- DataTemplate (View) for Answer Model -->
-        <DataTemplate DataType="{x:Type models:AnswerModel}">
-            <Border BorderBrush="Black" BorderThickness="1" Padding="5">
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+      
 
-                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="Answer ID" VerticalAlignment="Center" Margin="5" />
-                    <TextBox Grid.Row="0" Grid.Column="1"  Text="{Binding AnswerId}" Margin="5" Width="150" />
-
-                    <TextBlock Grid.Column="0" Grid.Row="1"  Text="Answer Name" VerticalAlignment="Center" Margin="5" />
-                    <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Name}" Margin="5" Width="150" />
-
-                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="Is Valid?" VerticalAlignment="Center" Margin="5" />
-                    <CheckBox Grid.Column="1" Grid.Row="2" Content="{Binding IsValid}" VerticalAlignment="Center" Margin="5" />
-
-                </Grid>
-            </Border>
-        </DataTemplate>
     </UserControl.Resources>
-
     <DockPanel Margin="20">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -49,7 +23,5 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
         </Grid>
-
-            <ContentControl Margin="10" Content="{Binding Path=CurrentAnswer}" />
     </DockPanel>
 </UserControl>

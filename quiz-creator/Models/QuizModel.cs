@@ -12,7 +12,7 @@ namespace QuizCreator.Models
     {
         #region Fields
         private string name;
-        private int quizId;
+        private Guid quizId;
         private ObservableCollection<QuestionModel> questionsList;
         #endregion
         #region Properties
@@ -33,7 +33,7 @@ namespace QuizCreator.Models
             }
         }
 
-        public ObservableCollection<QuestionModel> Questions
+        public ObservableCollection<QuestionModel> QuestionsList
         {
             get
             {
@@ -49,7 +49,7 @@ namespace QuizCreator.Models
                 }
             }
 
-        public int QuizId
+        public Guid QuizId
         {
             get
             {

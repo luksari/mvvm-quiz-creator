@@ -15,6 +15,13 @@ namespace QuizCreator.ViewModels
         private string name;
         #endregion
         #region Properties
+        public string PageName
+        {
+            get
+            {
+                return "Start";
+            }
+        }
 
 
         public string Name

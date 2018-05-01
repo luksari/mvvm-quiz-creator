@@ -14,6 +14,9 @@
         <DataTemplate x:Name="quizListViewTemplate" DataType="{x:Type viewmodels:QuizListViewModel}">
             <views:QuizListView />
         </DataTemplate>
+        <DataTemplate x:Name="quizViewTemplate" DataType="{x:Type viewmodels:QuizViewModel}">
+            <views:QuizView />
+        </DataTemplate>
         <DataTemplate x:Name="quizQuestionsViewTemplate" DataType="{x:Type viewmodels:QuizQuestionsViewModel}">
             <views:QuizQuestionsView />
         </DataTemplate>
@@ -44,8 +47,9 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1">
             <TextBlock FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
+            
         </DockPanel>
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Content="{Binding CurrentPageViewModel, Mode=TwoWay}"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 </Window>

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuizCreator.Views"
              xmlns:models="clr-namespace:QuizCreator.Models"
+             xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="400
              " d:DesignWidth="500
@@ -21,6 +22,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,26 +41,26 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <StackPanel >
-                <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
-                         SelectionBrush="#7200D70A" Foreground="#FF21272C" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
+                     SelectionBrush="#7200D70A" Foreground="#FF21272C" 
+                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          >
-                    <TextBox.InputBindings>
-                        <KeyBinding Key="Return" Command="{Binding AddCmd}"/>
-                    </TextBox.InputBindings>
-                </TextBox>
-                        <Button
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding AddQuizCmd}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+                <Button
                     Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Add Quiz" FontSize="36" Width="500" 
                     Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"     
-                    Command="{Binding AddCmd}"
+                    Command="{Binding AddQuizCmd}"
                     >
                     <Button.Effect>
                         <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
                     </Button.Effect>
                 </Button>
-
                 <ListView x:Name="ListViewQuizList"  Margin="0,25,0,0" Width="500" Height="300" 
                            ItemsSource="{Binding QuizList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                            AlternationCount="2" BorderThickness="0" BorderBrush="{x:Null}" 
@@ -73,13 +75,6 @@
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
-                            <GridViewColumn Header="ID">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock FontSize="16" Text="{Binding QuizId}"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
                             <GridViewColumn Header="Name" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
@@ -87,40 +82,14 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn >
+                            <GridViewColumn Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Enter Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
                                             <Button.InputBindings>
-                                                <MouseBinding Gesture="LeftDoubleClick" 
-                                                      Command="{Binding DataContext.DisplayQuizQuestionsViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
-                                                      CommandParameter="{Binding ElementName=ListViewQuizList, Path=SelectedItem}"/>
-                                            </Button.InputBindings>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                             </GridViewColumn>
-                                    <GridViewColumn >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                        <Button Content="Delete Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FFE01212">
-                                                <Button.InputBindings>
-                                                    <MouseBinding Gesture="LeftDoubleClick" 
-                                                      Command="{Binding DataContext.DisplayQuizQuestionsViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
-                                                      CommandParameter="{Binding ElementName=ListViewQuizList, Path=SelectedItem}"/>
-                                                </Button.InputBindings>
-                                            </Button>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            <GridViewColumn >
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Save Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FFE2B81B">
-                                            <Button.InputBindings>
-                                                <MouseBinding Gesture="LeftDoubleClick" 
-                                                      Command="{Binding DataContext.DisplayQuizQuestionsViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
-                                                      CommandParameter="{Binding ElementName=ListViewQuizList, Path=SelectedItem}"/>
+                                                <MouseBinding Gesture="LeftClick" 
+                                                     Command="{Binding DataContext.DisplayQuizViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                     CommandParameter="{Binding }"/>
                                             </Button.InputBindings>
                                         </Button>
                                     </DataTemplate>
@@ -129,9 +98,17 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+                <Button
+                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Save Quizes" FontSize="36" Width="500" 
+                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"     
+                    Command="{Binding SaveToJsonCmd}"
+                    >
+                    <Button.Effect>
+                        <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
+                    </Button.Effect>
+                </Button>
             </StackPanel>
         </DockPanel>
+
     </Grid>
-
-
 </UserControl>

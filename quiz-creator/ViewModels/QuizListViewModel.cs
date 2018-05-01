@@ -1,9 +1,11 @@
-﻿using QuizCreator.Additionals;
+﻿using Newtonsoft.Json;
+using QuizCreator.Additionals;
 using QuizCreator.Interfaces;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +16,20 @@ namespace QuizCreator.ViewModels
     public class QuizListViewModel : ObservableObject, IPageViewModel
     {
         #region Fields
-        private ObservableCollection<QuizViewModel> quizList;
-        private QuizViewModel currentQuiz;
+        private ObservableCollection<QuizModel> quizList;
+        private QuizModel currentQuiz;
         private string name;
-        private ICommand addCmd;
+        private ICommand addQuizCmd;
+        private ICommand saveToJsonCmd;
         #endregion
         #region Properties
+        public string PageName
+        {
+            get
+            {
+                return "QuizList";
+            }
+        }
         public string Name
         {
             get
@@ -34,7 +44,7 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public ObservableCollection<QuizViewModel> QuizList
+        public ObservableCollection<QuizModel> QuizList
         {
             get
             {
@@ -48,7 +58,7 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public QuizViewModel CurrentQuiz
+        public QuizModel CurrentQuiz
         {
             get
             {
@@ -62,42 +72,82 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public ICommand AddCmd
+        public ICommand AddQuizCmd
         {
             get
             {
-                if(addCmd == null)
+                if(addQuizCmd == null)
                 {
-                    addCmd = new RelayCommand(
-                        param => AddQuiz(new QuizViewModel { QuizId = 5, Name = this.Name, QuestionsList = null}),
+                    addQuizCmd = new RelayCommand(
+                        param => AddQuiz(),
                         param => true);
                 }
-                return addCmd;
+                return addQuizCmd;
             }
 
             set
             {
-                addCmd = value;
+                addQuizCmd = value;
             }
         }
+
+        public ICommand SaveToJsonCmd
+        {
+            get
+            {
+                if (saveToJsonCmd == null)
+                {
+                    saveToJsonCmd = new RelayCommand(
+                        param => SaveToJson(),
+                        param => (QuizList != null));
+                }
+                return saveToJsonCmd;
+            }
+
+            set
+            {
+                saveToJsonCmd = value;
+            }
+        }
+
         #endregion
         #region Constructors
         public QuizListViewModel()
         {
-            
-            QuizList = new ObservableCollection<QuizViewModel>();
+
+            LoadQuizes();
 
         }
         #endregion
         #region Methods
-        private void AddQuiz(object param)
+        private void AddQuiz()
         {
-            QuizViewModel qvm = new QuizViewModel();
-            qvm.Name = this.Name;
-            qvm.QuizId = QuizList.IndexOf(CurrentQuiz) + 1;
-            qvm.QuestionsList = null;
-            CurrentQuiz = qvm;
+            CurrentQuiz = new QuizModel { Name = Name, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
+
             QuizList.Add(CurrentQuiz);
+        }
+        private Guid generateID()
+        {
+            return Guid.NewGuid();
+        }
+        private void LoadQuizes()
+        {
+            ObservableCollection<QuizModel> quizList = new ObservableCollection<QuizModel>();
+
+            QuizList = quizList;
+        }
+        private async void SaveToJson()
+        {
+            
+            try
+            {
+                string newJson = JsonConvert.SerializeObject(QuizList);
+                using (StreamWriter writer = File.CreateText("data.json"))
+                {
+                    await writer.WriteAsync(newJson);
+                }
+            }
+            catch (FileNotFoundException e) { throw new Exception(e.Message); }
         }
         #endregion
     }

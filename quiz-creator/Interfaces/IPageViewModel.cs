@@ -8,6 +8,6 @@ namespace QuizCreator.Interfaces
 {
     public interface IPageViewModel
     {
-        string Name { get; set; }
+        string PageName { get; }
     }
 }

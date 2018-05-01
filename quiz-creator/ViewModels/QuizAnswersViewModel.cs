@@ -21,6 +21,13 @@ namespace QuizCreator.ViewModels
         #endregion
         #region Properties
 
+        public string PageName
+        {
+            get
+            {
+                return "Answers";
+            }
+        }
         public string Name
         {
             get

@@ -10,7 +10,16 @@ namespace QuizCreator.ViewModels
 {
     public class QuizQuestionsViewModel : ObservableObject, IPageViewModel
     {
+        #region Fields
         private string name;
+        #endregion
+        public string PageName
+        {
+            get
+            {
+                return "Questions";
+            }
+        }
         public string Name
         {
             get
