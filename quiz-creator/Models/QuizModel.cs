@@ -11,24 +11,24 @@ namespace QuizCreator.Models
     public class QuizModel : ObservableObject
     {
         #region Fields
-        private string name;
+        private string quizName;
         private Guid quizId;
         private ObservableCollection<QuestionModel> questionsList;
         #endregion
         #region Properties
-        public string Name
+        public string QuizName
         {
             get
             {
-                return name;
+                return quizName;
             }
 
             set
             {
-                if (value != name)
+                if (value != quizName)
                 {
-                    name = value;
-                    OnPropertyChanged("Name");
+                    quizName = value;
+                    OnPropertyChanged("QuizName");
                 }
             }
         }

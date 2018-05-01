@@ -18,7 +18,7 @@ namespace QuizCreator.ViewModels
         #region Fields
         private ObservableCollection<QuizModel> quizList;
         private QuizModel currentQuiz;
-        private string name;
+        private string quizName;
         private ICommand addQuizCmd;
         private ICommand saveToJsonCmd;
         #endregion
@@ -30,17 +30,17 @@ namespace QuizCreator.ViewModels
                 return "QuizList";
             }
         }
-        public string Name
+        public string QuizName
         {
             get
             {
-                return name;
+                return quizName;
             }
 
             set
             {
-                name = value;
-                OnPropertyChanged("Name");
+                quizName = value;
+                OnPropertyChanged("QuizName");
             }
         }
 
@@ -122,7 +122,7 @@ namespace QuizCreator.ViewModels
         #region Methods
         private void AddQuiz()
         {
-            CurrentQuiz = new QuizModel { Name = Name, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
+            CurrentQuiz = new QuizModel { QuizName = QuizName, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
 
             QuizList.Add(CurrentQuiz);
         }
