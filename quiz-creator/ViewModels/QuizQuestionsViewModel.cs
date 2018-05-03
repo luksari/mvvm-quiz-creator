@@ -1,5 +1,5 @@
-﻿using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
+﻿using GalaSoft.MvvmLight;
+using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizQuestionsViewModel : ObservableObject, IPageViewModel
+    public class QuizQuestionsViewModel : ViewModelBase
     {
         #region Fields
         private string name;
@@ -30,7 +30,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                //OnPropertyChanged("Name");
             }
         }
     }

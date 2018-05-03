@@ -5,9 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using QuizCreator.Interfaces;
 using QuizCreator.Views;
 using QuizCreator.ViewModels;
+using QuizCreator.Additionals;
 
 namespace QuizCreator
 {
@@ -19,9 +19,9 @@ namespace QuizCreator
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            IFrameNavigationService navigationService = new FrameNavigationService();
             MainWindowView app = new MainWindowView();
-            MainWindowViewModel context = new MainWindowViewModel();
+            MainWindowViewModel context = new MainWindowViewModel(navigationService);
             app.DataContext = context;
             app.Show();
         }

@@ -1,5 +1,7 @@
-﻿using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
+using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,111 +11,28 @@ using System.Windows.Input;
 
 namespace QuizCreator.ViewModels
 {
-    public class MainWindowViewModel : ObservableObject
+    public class MainWindowViewModel : ViewModelBase
     {
         #region Fields
+        IFrameNavigationService navigationService;
 
-        private ICommand _changePageCommand;
-
-        private IPageViewModel _currentPageViewModel;
-        private List<IPageViewModel> _pageViewModels;
         #endregion
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IFrameNavigationService navigationService)
         {
-            // Add available pages
-            PageViewModels.Add(new QuizStartViewModel());
-            PageViewModels.Add(new QuizListViewModel());
-            PageViewModels.Add(new QuizQuestionsViewModel());
-            PageViewModels.Add(new QuizAnswersViewModel());
-            PageViewModels.Add(new QuizViewModel());
-
-            // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
+            this.navigationService = navigationService;
         }
-
         #region Properties / Commands
 
-        public ICommand ChangePageCommand
+        public ICommand NavigateToQuizStartCommand
         {
-            get
-            {
-                if (_changePageCommand == null)
-                {
-                    _changePageCommand = new RelayCommand(
-                        p => ChangeViewModel((IPageViewModel)p),
-                        p => p is IPageViewModel);
-                }
-
-                return _changePageCommand;
-            }
+            get;
+            private set;
         }
-        public ICommand DisplayQuizListViewCommand
-        {
-            get
-            {
-                return new RelayCommand(action => CurrentPageViewModel = PageViewModels[1],
-                param => true);
-            }
-        }
-        public ICommand DisplayQuizAnswersViewCommand
-        {
-            get
-            {
-                return new RelayCommand(action => CurrentPageViewModel = PageViewModels[3],
-                param => true);
-            }
-        }
-        public ICommand DisplayQuizViewCommand
-        {
-            get
-            {
-                return new RelayCommand(action => CurrentPageViewModel = PageViewModels[4],
-                param => true);
-            }
-        }
-
-        public List<IPageViewModel> PageViewModels
-        {
-            get
-            {
-                if (_pageViewModels == null)
-                    _pageViewModels = new List<IPageViewModel>();
-
-                return _pageViewModels;
-            }
-        }
-
-        public IPageViewModel CurrentPageViewModel
-        {
-            get
-            {
-                return _currentPageViewModel;
-            }
-            set
-            {
-                if (_currentPageViewModel != value)
-                {
-                    _currentPageViewModel = value;
-                    OnPropertyChanged("CurrentPageViewModel");
-                }
-            }
-        }
-
         #endregion
 
         #region Methods
 
-        private void ChangeViewModel(IPageViewModel viewModel)
-        {
-            if (!PageViewModels.Contains(viewModel))
-                PageViewModels.Add(viewModel);
-
-            CurrentPageViewModel = PageViewModels
-                .FirstOrDefault(vm => vm == viewModel);
-
-            Console.WriteLine(CurrentPageViewModel);
-        }
 
 
         #endregion

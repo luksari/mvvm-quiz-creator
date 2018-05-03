@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizListViewModel : ObservableObject, IPageViewModel
+    public class QuizListViewModel : ViewModelBase
     {
         #region Fields
         private ObservableCollection<QuizModel> quizList;
@@ -40,7 +40,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizName = value;
-                OnPropertyChanged("QuizName");
+                //OnPropertyChanged("QuizName");
             }
         }
 
@@ -54,7 +54,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizList = value;
-                OnPropertyChanged("QuizList");
+               // OnPropertyChanged("QuizList");
             }
         }
 
@@ -68,7 +68,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 currentQuiz = value;
-                OnPropertyChanged("CurrentQuiz");
+               // OnPropertyChanged("CurrentQuiz");
             }
         }
 
@@ -78,9 +78,9 @@ namespace QuizCreator.ViewModels
             {
                 if(addQuizCmd == null)
                 {
-                    addQuizCmd = new RelayCommand(
-                        param => AddQuiz(),
-                        param => true);
+                    //addQuizCmd = new RelayCommand(
+                    //    param => AddQuiz(),
+                    //    param => true);
                 }
                 return addQuizCmd;
             }
@@ -97,9 +97,9 @@ namespace QuizCreator.ViewModels
             {
                 if (saveToJsonCmd == null)
                 {
-                    saveToJsonCmd = new RelayCommand(
-                        param => SaveToJson(),
-                        param => (QuizList != null));
+                    //saveToJsonCmd = new RelayCommand(
+                    //    param => SaveToJson(),
+                    //    param => (QuizList != null));
                 }
                 return saveToJsonCmd;
             }

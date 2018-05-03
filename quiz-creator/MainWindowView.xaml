@@ -7,28 +7,16 @@
         xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
         xmlns:views="clr-namespace:QuizCreator.Views"
         Title="QuizSolver" Height="350" Width="525" 
-        Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico" >
+        Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico"	
+        >
+    
 
 
     <Window.Resources>
-        <DataTemplate x:Name="quizListViewTemplate" DataType="{x:Type viewmodels:QuizListViewModel}">
-            <views:QuizListView />
-        </DataTemplate>
-        <DataTemplate x:Name="quizViewTemplate" DataType="{x:Type viewmodels:QuizViewModel}">
-            <views:QuizView />
-        </DataTemplate>
-        <DataTemplate x:Name="quizQuestionsViewTemplate" DataType="{x:Type viewmodels:QuizQuestionsViewModel}">
-            <views:QuizQuestionsView />
-        </DataTemplate>
-        <DataTemplate x:Name="quizStartViewTemplate" DataType="{x:Type viewmodels:QuizStartViewModel}">
-            <views:QuizStartView />
-        </DataTemplate>
-        <DataTemplate x:Name="quizAnswerViewTemplate" DataType="{x:Type viewmodels:QuizAnswersViewModel}">
-            <views:QuizAnswersView />
-        </DataTemplate>
+        
     </Window.Resources>
 
-    <Grid Margin="0,2,0,-2.4">
+    <Grid Margin="0,2,0,-2.4" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -44,12 +32,14 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1">
-            <TextBlock FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
             
-        </DockPanel>
-
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Content="{Binding CurrentPageViewModel}"/>
+            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"
+                       DataContext="{Binding Main, Source={StaticResource Locator}}">
+                <TextBlock Grid.Row ="0" FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
+            
+            </DockPanel>
+            <Frame Source="./Views/QuizStartView.xaml" x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+        </StackPanel>
     </Grid>
 </Window>

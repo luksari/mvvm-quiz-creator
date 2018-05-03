@@ -1,4 +1,5 @@
-﻿using QuizCreator.Additionals;
+﻿using GalaSoft.MvvmLight;
+using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +30,7 @@ namespace QuizCreator.Models
                 if(value != name)
                 {
                     name = value;
-                    OnPropertyChanged("Name");
+                    RaisePropertyChanged("Name");
                 }
             }
         }
@@ -46,7 +47,7 @@ namespace QuizCreator.Models
                 if (value != answersList)
                 {
                     answersList = value;
-                    OnPropertyChanged("AnswerList");
+                    RaisePropertyChanged("AnswerList");
                 }
             }
         }
@@ -62,7 +63,7 @@ namespace QuizCreator.Models
                 if (value != questionId)
                 {
                     questionId = value;
-                    OnPropertyChanged("QuestionId");
+                    RaisePropertyChanged("QuestionId");
                 }
 
             }

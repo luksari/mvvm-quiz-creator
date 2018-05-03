@@ -1,4 +1,5 @@
-﻿using QuizCreator.Additionals;
+﻿using GalaSoft.MvvmLight;
+using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +29,7 @@ namespace QuizCreator.Models
                 if (value != quizesList)
                 {
                     quizesList = value;
-                    OnPropertyChanged("QuizesList");
+                    RaisePropertyChanged("QuizesList");
                 }
             }
         }

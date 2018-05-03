@@ -7,7 +7,9 @@
                           xmlns:models="clr-namespace:QuizCreator.Models"
              xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Quiz}"
+             >
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -56,7 +58,8 @@
                     Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Return" FontSize="18"
                     Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
                     Grid.Column="1" Grid.Row="4"
-                    Command="{Binding DataContext.DisplayQuizListViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
+                    Command="{Binding DataContext.DisplayQuizListViewCommand, 
+                    RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
                     >
             <Button.Effect>
                 <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>

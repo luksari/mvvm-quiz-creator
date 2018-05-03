@@ -1,5 +1,6 @@
-﻿using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using QuizCreator.Additionals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ using System.Windows.Input;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizStartViewModel : ObservableObject, IPageViewModel
+    public class QuizStartViewModel : ViewModelBase
     {
         #region Fields
         private string name;
+        IFrameNavigationService navigationService;
         #endregion
         #region Properties
         public string PageName
@@ -23,7 +25,7 @@ namespace QuizCreator.ViewModels
             }
         }
 
-
+        public RelayCommand DisplayQuizListViewCommand { get; private set; }
         public string Name
         {
             get
@@ -34,8 +36,22 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                RaisePropertyChanged("Name");
             }
+        }
+        #endregion
+
+        public QuizStartViewModel(IFrameNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+
+            DisplayQuizListViewCommand = new RelayCommand(NavigateToQuizList);
+        }
+
+        #region Methods
+        private void NavigateToQuizList()
+        {
+            navigationService.NavigateTo("QuizList");
         }
         #endregion
     }

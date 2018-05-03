@@ -1,5 +1,5 @@
-﻿using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
+﻿using GalaSoft.MvvmLight;
+using QuizCreator.Additionals;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizViewModel : ObservableObject, IPageViewModel
+    public class QuizViewModel : ViewModelBase
     {
         private string name;
         private Guid quizId;
@@ -33,7 +33,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                //OnPropertyChanged("Name");
 
             }
         }
@@ -48,7 +48,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizId = value;
-                OnPropertyChanged("QuizId");
+                //OnPropertyChanged("QuizId");
             }
         }
 
@@ -62,7 +62,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 questionsList = value;
-                OnPropertyChanged("QuestionsList");
+                //OnPropertyChanged("QuestionsList");
             }
         }
     }

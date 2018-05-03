@@ -7,13 +7,11 @@
              xmlns:models="clr-namespace:QuizCreator.Models"
              xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding Start, Source={StaticResource Locator}}">
+    
 
-    <UserControl.DataContext>
-        <vm:QuizStartViewModel/>
-    </UserControl.DataContext>
-
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -38,8 +36,7 @@
                     <Button  Margin="0,25,0,0" Foreground="#FFFFFFFF" 
                              Content="{Binding PageName}" FontSize="48" Width="500" Height="150" 
                              Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
-                             Command="{Binding DataContext.DisplayQuizListViewCommand, 
-                                       RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                             Command="{Binding DisplayQuizListViewCommand}"
                              CommandParameter="{Binding }">
                     </Button>
                 </StackPanel>

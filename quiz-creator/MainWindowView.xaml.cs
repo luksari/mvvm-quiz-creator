@@ -1,4 +1,6 @@
-﻿using QuizCreator.ViewModels;
+﻿using GalaSoft.MvvmLight.Ioc;
+using QuizCreator.Additionals;
+using QuizCreator.ViewModels;
 using System;
 using System.Windows;
 

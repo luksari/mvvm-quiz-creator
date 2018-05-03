@@ -8,8 +8,9 @@
              xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="400
-             " d:DesignWidth="500
-             ">
+             " d:DesignWidth="500"
+             DataContext="{Binding Source={StaticResource Locator}, Path=QuizList}"
+             >
 
     <UserControl.Resources>
         <Style TargetType="ListViewItem">
@@ -46,7 +47,7 @@
             <StackPanel >
             <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
                      SelectionBrush="#7200D70A" Foreground="#FF21272C" 
-                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding QuizName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          >
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding AddQuizCmd}"/>
@@ -78,7 +79,7 @@
                             <GridViewColumn Header="Name" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock FontSize="16" Text="{Binding Name}"></TextBlock>
+                                        <TextBlock FontSize="16" Text="{Binding QuizName}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -88,7 +89,8 @@
                                         <Button Content="Enter Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
                                             <Button.InputBindings>
                                                 <MouseBinding Gesture="LeftClick" 
-                                                     Command="{Binding DataContext.DisplayQuizViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                     Command="{Binding DataContext.DisplayQuizViewCommand, 
+                                                               RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                                      CommandParameter="{Binding }"/>
                                             </Button.InputBindings>
                                         </Button>

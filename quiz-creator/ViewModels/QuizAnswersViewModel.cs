@@ -1,8 +1,10 @@
-﻿using QuizCreator.Additionals;
-using QuizCreator.Interfaces;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using QuizCreator.Additionals;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ using System.Windows.Input;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizAnswersViewModel: ObservableObject, IPageViewModel
+    public class QuizAnswersViewModel: ViewModelBase, INotifyPropertyChanged
     {
         #region Fields
         private string name;
@@ -38,7 +40,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                //OnPropertyChanged("Name");
             }
         }
 
@@ -52,7 +54,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 answerId = value;
-                OnPropertyChanged("AnswerId");
+                //OnPropertyChanged("AnswerId");
             }
         }
 
@@ -62,9 +64,9 @@ namespace QuizCreator.ViewModels
             {
                 if(getAnswerCmd == null)
                 {
-                    getAnswerCmd = new RelayCommand(
-                        param => GetAnswer(),
-                        param => AnswerId > 0);
+                    //getAnswerCmd = new RelayCommand(
+                    //    param => GetAnswer(),
+                    //    param => AnswerId > 0);
                 }
                 return getAnswerCmd;
             }
@@ -81,10 +83,10 @@ namespace QuizCreator.ViewModels
             {
                 if (saveAnswerCmd == null)
                 {
-                    saveAnswerCmd = new RelayCommand(
-                        param => SaveAnswer(),
-                        param => (CurrentAnswer != null)
-                    );
+                    //saveAnswerCmd = new RelayCommand(
+                    //    param => SaveAnswer(),
+                    //    param => (CurrentAnswer != null)
+                    //);
                 }
                 return saveAnswerCmd;
             }
@@ -105,7 +107,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 currentAnswer = value;
-                OnPropertyChanged("CurrentAnswer");
+                //OnPropertyChanged("CurrentAnswer");
             }
         }
         #endregion
