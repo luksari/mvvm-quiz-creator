@@ -143,7 +143,6 @@
     <Compile Include="Additionals\MVVMMessage.cs" />
     <Compile Include="Additionals\FrameNavigationService.cs" />
     <Compile Include="Models\AnswerModel.cs" />
-    <Compile Include="Models\QuizListModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\QuizModel.cs" />
     <Compile Include="StyleableWindow\ControlDoubleClickBehavior.cs" />

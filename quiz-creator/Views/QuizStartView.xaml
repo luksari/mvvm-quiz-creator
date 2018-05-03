@@ -36,7 +36,7 @@
                     <Button  Margin="0,25,0,0" Foreground="#FFFFFFFF" 
                              Content="{Binding PageName}" FontSize="48" Width="500" Height="150" 
                              Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
-                             Command="{Binding DisplayQuizListViewCommand}"
+                             Command="{Binding NavigateToQuizListViewCmd}"
                              CommandParameter="{Binding }">
                     </Button>
                 </StackPanel>

@@ -24,11 +24,6 @@ namespace QuizCreator.ViewModels
         }
         #region Properties / Commands
 
-        public ICommand NavigateToQuizStartCommand
-        {
-            get;
-            private set;
-        }
         #endregion
 
         #region Methods

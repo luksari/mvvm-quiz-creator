@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:QuizCreator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding Source={StaticResource Locator}, Path=Questions}"
-             >
+             DataContext="{Binding Questions, Source={StaticResource Locator}}"
+    >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

@@ -30,7 +30,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                //OnPropertyChanged("Name");
+                RaisePropertyChanged("Name");
             }
         }
     }

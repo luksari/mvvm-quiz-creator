@@ -40,7 +40,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                //OnPropertyChanged("Name");
+                RaisePropertyChanged("Name");
             }
         }
 
@@ -54,7 +54,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 answerId = value;
-                //OnPropertyChanged("AnswerId");
+                RaisePropertyChanged("AnswerId");
             }
         }
 
@@ -107,7 +107,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 currentAnswer = value;
-                //OnPropertyChanged("CurrentAnswer");
+                RaisePropertyChanged("CurrentAnswer");
             }
         }
         #endregion

@@ -7,10 +7,9 @@
              xmlns:models="clr-namespace:QuizCreator.Models"
              xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="400
-             " d:DesignWidth="500"
-             DataContext="{Binding Source={StaticResource Locator}, Path=QuizList}"
-             >
+             d:DesignHeight="400" 
+             d:DesignWidth="500"
+             DataContext="{Binding QuizList, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <Style TargetType="ListViewItem">
@@ -23,17 +22,17 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -42,7 +41,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <StackPanel >
             <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
@@ -65,7 +64,9 @@
                 <ListView x:Name="ListViewQuizList"  Margin="0,25,0,0" Width="500" Height="300" 
                            ItemsSource="{Binding QuizList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                            AlternationCount="2" BorderThickness="0" BorderBrush="{x:Null}" 
-                           IsSynchronizedWithCurrentItem="True" Foreground="#FF21272C">
+                           IsSynchronizedWithCurrentItem="True" Foreground="#FF21272C"
+                           SelectedItem="{Binding CurrentQuiz}"
+                          >
                     <ListView.Effect>
                         <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
                     </ListView.Effect>
@@ -89,8 +90,22 @@
                                         <Button Content="Enter Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
                                             <Button.InputBindings>
                                                 <MouseBinding Gesture="LeftClick" 
-                                                     Command="{Binding DataContext.DisplayQuizViewCommand, 
-                                                               RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                     Command="{Binding DataContext.NavigateToQuizViewCmd, 
+                                                               RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                     CommandParameter="{Binding }"/>
+                                            </Button.InputBindings>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
+                                            <Button.InputBindings>
+                                                <MouseBinding Gesture="LeftClick" 
+                                                     Command="{Binding DataContext.DeleteQuizCmd, 
+                                                               RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                                      CommandParameter="{Binding }"/>
                                             </Button.InputBindings>
                                         </Button>

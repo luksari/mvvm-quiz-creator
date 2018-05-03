@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using QuizCreator.Additionals;
 using QuizCreator.Models;
 using System;
@@ -12,9 +13,32 @@ namespace QuizCreator.ViewModels
 {
     public class QuizViewModel : ViewModelBase
     {
+        #region Fields
         private string name;
         private Guid quizId;
         private ObservableCollection<QuestionModel> questionsList;
+        private IFrameNavigationService navigationService;
+        #endregion
+        #region Constructors
+        public QuizViewModel(IFrameNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+            NavigateToQuizListViewCmd = new RelayCommand(NavigateToQuizListView);
+
+        }
+        #endregion
+        #region Methods
+        private void NavigateToQuizListView()
+        {
+            navigationService.NavigateTo("QuizList");
+        }
+        #endregion
+        #region Props / Commands
+        public RelayCommand NavigateToQuizListViewCmd
+        {
+            get;
+            private set;
+        }
         public string PageName
         {
             get
@@ -33,7 +57,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 name = value;
-                //OnPropertyChanged("Name");
+                RaisePropertyChanged("Name");
 
             }
         }
@@ -48,7 +72,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizId = value;
-                //OnPropertyChanged("QuizId");
+                RaisePropertyChanged("QuizId");
             }
         }
 
@@ -62,8 +86,9 @@ namespace QuizCreator.ViewModels
             set
             {
                 questionsList = value;
-                //OnPropertyChanged("QuestionsList");
+                RaisePropertyChanged("QuestionsList");
             }
         }
+        #endregion
     }
 }

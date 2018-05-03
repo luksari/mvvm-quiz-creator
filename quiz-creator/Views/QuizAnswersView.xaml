@@ -8,8 +8,8 @@
              xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding Source={StaticResource Locator}, Path=Answers}"
-             >
+             DataContext="{Binding Answers, Source={StaticResource Locator}}">
+    
     
     <UserControl.Resources>
       

@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json;
 using QuizCreator.Additionals;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,7 @@ namespace QuizCreator.ViewModels
         private ObservableCollection<QuizModel> quizList;
         private QuizModel currentQuiz;
         private string quizName;
-        private ICommand addQuizCmd;
-        private ICommand saveToJsonCmd;
+        private IFrameNavigationService navigationService;
         #endregion
         #region Properties
         public string PageName
@@ -40,7 +41,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizName = value;
-                //OnPropertyChanged("QuizName");
+                RaisePropertyChanged("QuizName");
             }
         }
 
@@ -54,7 +55,7 @@ namespace QuizCreator.ViewModels
             set
             {
                 quizList = value;
-               // OnPropertyChanged("QuizList");
+                RaisePropertyChanged("QuizList");
             }
         }
 
@@ -68,52 +69,39 @@ namespace QuizCreator.ViewModels
             set
             {
                 currentQuiz = value;
-               // OnPropertyChanged("CurrentQuiz");
+                RaisePropertyChanged("CurrentQuiz");
             }
         }
 
-        public ICommand AddQuizCmd
+        public RelayCommand AddQuizCmd
         {
-            get
-            {
-                if(addQuizCmd == null)
-                {
-                    //addQuizCmd = new RelayCommand(
-                    //    param => AddQuiz(),
-                    //    param => true);
-                }
-                return addQuizCmd;
-            }
-
-            set
-            {
-                addQuizCmd = value;
-            }
+            get; private set;
         }
-
-        public ICommand SaveToJsonCmd
+        public RelayCommand<QuizModel> DeleteQuizCmd
         {
-            get
-            {
-                if (saveToJsonCmd == null)
-                {
-                    //saveToJsonCmd = new RelayCommand(
-                    //    param => SaveToJson(),
-                    //    param => (QuizList != null));
-                }
-                return saveToJsonCmd;
-            }
+            get;
+            private set;
+        }
+        public RelayCommand NavigateToQuizViewCmd { get; private set;}
 
-            set
-            {
-                saveToJsonCmd = value;
-            }
+        public RelayCommand SaveToJsonCmd
+        {
+            get; private set;
         }
 
         #endregion
         #region Constructors
-        public QuizListViewModel()
+        public QuizListViewModel(IFrameNavigationService navigationService)
         {
+            this.navigationService = navigationService;
+             
+            AddQuizCmd = new RelayCommand(AddQuiz);
+            SaveToJsonCmd = new RelayCommand(SaveToJson);
+            NavigateToQuizViewCmd = new RelayCommand(NavigateToQuizView);
+            DeleteQuizCmd = new RelayCommand<QuizModel>(
+                param => DeleteQuiz(param),
+                CurrentQuiz != null);
+
 
             LoadQuizes();
 
@@ -148,6 +136,15 @@ namespace QuizCreator.ViewModels
                 }
             }
             catch (FileNotFoundException e) { throw new Exception(e.Message); }
+        }
+
+        private void NavigateToQuizView()
+        {
+            navigationService.NavigateTo("Quiz");
+        }
+        private void DeleteQuiz(QuizModel currentQuiz)
+        {
+            QuizList.Remove(currentQuiz);
         }
         #endregion
     }

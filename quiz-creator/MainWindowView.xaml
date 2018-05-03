@@ -7,7 +7,8 @@
         xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
         xmlns:views="clr-namespace:QuizCreator.Views"
         Title="QuizSolver" Height="350" Width="525" 
-        Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico"	
+        Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
         >
     
 
@@ -31,15 +32,22 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             
             <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"
-                       DataContext="{Binding Main, Source={StaticResource Locator}}">
+                       >
                 <TextBlock Grid.Row ="0" FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
             
             </DockPanel>
-            <Frame Source="./Views/QuizStartView.xaml" x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+            <Frame  Source="./Views/QuizStartView.xaml" x:Name="MainFrame" 
+                    NavigationUIVisibility="Hidden"
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5"
+                    Width="{Binding ActualWidth, 
+                    RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
+                    Height="{Binding ActualHeight, 
+                    RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}"/>
         </StackPanel>
     </Grid>
 </Window>

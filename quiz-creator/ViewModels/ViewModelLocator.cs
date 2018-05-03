@@ -91,6 +91,7 @@ namespace QuizCreator.ViewModels
             navigationService.Configure("Main", new Uri("../MainWindowView.xaml", UriKind.Relative));
             navigationService.Configure("Start", new Uri("../Views/QuizStartView.xaml", UriKind.Relative));
             navigationService.Configure("QuizList", new Uri("../Views/QuizListView.xaml", UriKind.Relative));
+            navigationService.Configure("Quiz", new Uri("../Views/QuizView.xaml", UriKind.Relative));
 
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
 

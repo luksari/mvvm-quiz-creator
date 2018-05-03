@@ -25,7 +25,7 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public RelayCommand DisplayQuizListViewCommand { get; private set; }
+        public RelayCommand NavigateToQuizListViewCmd{ get; private set; }
         public string Name
         {
             get
@@ -45,7 +45,7 @@ namespace QuizCreator.ViewModels
         {
             this.navigationService = navigationService;
 
-            DisplayQuizListViewCommand = new RelayCommand(NavigateToQuizList);
+            NavigateToQuizListViewCmd = new RelayCommand(NavigateToQuizList);
         }
 
         #region Methods

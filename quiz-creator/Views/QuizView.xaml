@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuizCreator.Views"
-                          xmlns:models="clr-namespace:QuizCreator.Models"
+             xmlns:models="clr-namespace:QuizCreator.Models"
              xmlns:vm="clr-namespace:QuizCreator.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding Source={StaticResource Locator}, Path=Quiz}"
-             >
+             d:DesignHeight="300" d:DesignWidth="500"
+             DataContext="{Binding Quiz, Source={StaticResource Locator}}">
 
-    <Grid>
+
+    <Grid  Margin="25, 25, 25, 25">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -29,42 +29,25 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
             <StackPanel>
-                <TextBox   x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
-                   SelectionBrush="#7200D70A" Foreground="#FF21272C" 
-                   Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         >
+                <TextBox   x:Name="textBoxQuizName" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
+                       SelectionBrush="#7200D70A" Foreground="#FF21272C" 
+                       Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             >
                 </TextBox>
-                <Button
-                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Delete Quiz" FontSize="18" Width="500" 
-                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"  
-                    >
-                    <Button.Effect>
-                        <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
-                    </Button.Effect>
-                </Button>
-                <Button
-                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Save Quiz" FontSize="18" Width="500" 
-                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"  
-                    >
-                    <Button.Effect>
-                        <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
-                    </Button.Effect>
-                </Button>
             </StackPanel>
+
         </DockPanel>
         <Button
-                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Return" FontSize="18"
-                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
-                    Grid.Column="1" Grid.Row="4"
-                    Command="{Binding DataContext.DisplayQuizListViewCommand, 
-                    RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" 
-                    >
+                        Foreground="#FFFFFFFF" Content="Return" FontSize="14"
+                        Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
+                        Command="{Binding NavigateToQuizListViewCmd, Mode=OneWay}" Grid.ColumnSpan="2" 
+                        >
             <Button.Effect>
                 <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
             </Button.Effect>
-            
+
         </Button>
     </Grid>
 </UserControl>
