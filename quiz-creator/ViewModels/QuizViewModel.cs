@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using QuizCreator.Additionals;
 using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace QuizCreator.ViewModels
         {
             this.navigationService = navigationService;
             NavigateToQuizListViewCmd = new RelayCommand(NavigateToQuizListView);
+            Messenger.Default.Register<MVVMMessage>(this, this.HandleMessage);
 
         }
         #endregion
@@ -31,6 +34,13 @@ namespace QuizCreator.ViewModels
         private void NavigateToQuizListView()
         {
             navigationService.NavigateTo("QuizList");
+        }
+        private void HandleMessage(MVVMMessage message)
+        {
+            Debug.WriteLine(message);
+            this.Name = message.Quiz.QuizName;
+            this.QuizId = message.Quiz.QuizId;
+            this.QuestionsList = message.Quiz.QuestionsList;
         }
         #endregion
         #region Props / Commands

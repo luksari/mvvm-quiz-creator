@@ -79,13 +79,6 @@ namespace QuizCreator.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<MainWindowViewModel>();
-            SimpleIoc.Default.Register<QuizStartViewModel>();
-            SimpleIoc.Default.Register<QuizListViewModel>();
-            SimpleIoc.Default.Register<QuizViewModel>();
-            SimpleIoc.Default.Register<QuizQuestionsViewModel>();
-            SimpleIoc.Default.Register<QuizAnswersViewModel>();
-
             var navigationService = new FrameNavigationService();
 
             navigationService.Configure("Main", new Uri("../MainWindowView.xaml", UriKind.Relative));
@@ -94,6 +87,15 @@ namespace QuizCreator.ViewModels
             navigationService.Configure("Quiz", new Uri("../Views/QuizView.xaml", UriKind.Relative));
 
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
+
+
+            SimpleIoc.Default.Register<MainWindowViewModel>(true);
+            SimpleIoc.Default.Register<QuizStartViewModel>(true);
+            SimpleIoc.Default.Register<QuizListViewModel>(true);
+            SimpleIoc.Default.Register<QuizViewModel>(true);
+            SimpleIoc.Default.Register<QuizQuestionsViewModel>(true);
+            SimpleIoc.Default.Register<QuizAnswersViewModel>(true);
+
 
 
         }

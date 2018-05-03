@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using Newtonsoft.Json;
 using QuizCreator.Additionals;
 using QuizCreator.Models;
@@ -113,6 +114,8 @@ namespace QuizCreator.ViewModels
             CurrentQuiz = new QuizModel { QuizName = QuizName, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
 
             QuizList.Add(CurrentQuiz);
+
+            SaveToJson();
         }
         private Guid generateID()
         {
@@ -140,11 +143,20 @@ namespace QuizCreator.ViewModels
 
         private void NavigateToQuizView()
         {
+            Messenger.Default.Send<MVVMMessage>(new MVVMMessage
+            {
+                Quiz = CurrentQuiz
+
+            });
+
             navigationService.NavigateTo("Quiz");
+
         }
         private void DeleteQuiz(QuizModel currentQuiz)
         {
             QuizList.Remove(currentQuiz);
+
+            SaveToJson();
         }
         #endregion
     }
