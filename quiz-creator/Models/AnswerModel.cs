@@ -12,24 +12,24 @@ namespace QuizCreator.Models
     public class AnswerModel : ObservableObject
     {
         #region Fields
-        private string name;
+        private string answerName;
         private bool isValid;
-        private int answerId;
+        private Guid answerId;
         #endregion
         #region Properties
-        public string Name
+        public string AnswerName
         {
             get
             {
-                return name;
+                return answerName;
 
             }
             set
             {
-                if( name != value)
+                if( answerName != value)
                 {
-                    name = value;
-                    RaisePropertyChanged("Name");
+                    answerName = value;
+                    RaisePropertyChanged("AnswerName");
                 }
 
             }
@@ -52,7 +52,7 @@ namespace QuizCreator.Models
             }
         }
 
-        public int AnswerId
+        public Guid AnswerId
         {
             get
             {

@@ -12,25 +12,25 @@ namespace QuizCreator.Models
     public class QuestionModel : ObservableObject
     {
         #region Fields
-        private string name;
+        private string questionName;
         private ObservableCollection<AnswerModel> answersList;
-        private int questionId;
+        private Guid questionId;
         #endregion
 
         #region Properties
-        public string Name
+        public string QuestionName
         {
             get
             {
-                return name;
+                return questionName;
             }
 
             set
             {
-                if(value != name)
+                if(value != questionName)
                 {
-                    name = value;
-                    RaisePropertyChanged("Name");
+                    questionName = value;
+                    RaisePropertyChanged("QuestionName");
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace QuizCreator.Models
                 }
             }
         }
-        public int QuestionId
+        public Guid QuestionId
         {
             get
             {

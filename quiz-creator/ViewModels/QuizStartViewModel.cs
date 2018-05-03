@@ -17,13 +17,6 @@ namespace QuizCreator.ViewModels
         IFrameNavigationService navigationService;
         #endregion
         #region Properties
-        public string PageName
-        {
-            get
-            {
-                return "Start";
-            }
-        }
 
         public RelayCommand NavigateToQuizListViewCmd{ get; private set; }
         public string Name

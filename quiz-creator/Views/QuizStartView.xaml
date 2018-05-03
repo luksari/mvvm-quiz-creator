@@ -34,7 +34,7 @@
                 <StackPanel >
                     <TextBlock FontSize="28" Foreground="#FF21272C" HorizontalAlignment="Center" FontFamily="Lato">Welcome in Quiz Creator App</TextBlock>
                     <Button  Margin="0,25,0,0" Foreground="#FFFFFFFF" 
-                             Content="{Binding PageName}" FontSize="48" Width="500" Height="150" 
+                             Content="Start Creating" FontSize="48" Width="500" Height="150" 
                              Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
                              Command="{Binding NavigateToQuizListViewCmd}"
                              CommandParameter="{Binding }">

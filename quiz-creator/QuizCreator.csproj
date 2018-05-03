@@ -138,10 +138,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Additionals\AnswerMessage.cs" />
     <Compile Include="Additionals\IFrameNavigationService.cs" />
     <Compile Include="Additionals\IPageViewModel.cs" />
     <Compile Include="Additionals\MVVMMessage.cs" />
     <Compile Include="Additionals\FrameNavigationService.cs" />
+    <Compile Include="Additionals\QuestionMessage.cs" />
+    <Compile Include="Additionals\QuizMessage.cs" />
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\QuizModel.cs" />

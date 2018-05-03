@@ -25,13 +25,6 @@ namespace QuizCreator.ViewModels
         private IFrameNavigationService navigationService;
         #endregion
         #region Properties
-        public string PageName
-        {
-            get
-            {
-                return "QuizList";
-            }
-        }
         public string QuizName
         {
             get
@@ -104,17 +97,31 @@ namespace QuizCreator.ViewModels
                 CurrentQuiz != null);
 
 
+            Messenger.Default.Register<MVVMMessage>(this,this.SaveMessage);
+            Messenger.Default.Register<string>(this, this.HandleQuizMessage);
+
             LoadQuizes();
 
         }
+
+
         #endregion
         #region Methods
+        private void HandleQuizMessage(string msg)
+        {
+            CurrentQuiz.QuizName = msg;
+            Console.WriteLine(msg);
+        }
         private void AddQuiz()
         {
             CurrentQuiz = new QuizModel { QuizName = QuizName, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
 
             QuizList.Add(CurrentQuiz);
 
+            SaveToJson();
+        }
+        private void SaveMessage(MVVMMessage msg)
+        {
             SaveToJson();
         }
         private Guid generateID()
@@ -143,7 +150,7 @@ namespace QuizCreator.ViewModels
 
         private void NavigateToQuizView()
         {
-            Messenger.Default.Send<MVVMMessage>(new MVVMMessage
+            Messenger.Default.Send<QuizMessage>(new QuizMessage
             {
                 Quiz = CurrentQuiz
 

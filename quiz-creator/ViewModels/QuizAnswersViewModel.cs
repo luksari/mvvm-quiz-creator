@@ -15,32 +15,23 @@ namespace QuizCreator.ViewModels
     public class QuizAnswersViewModel: ViewModelBase, INotifyPropertyChanged
     {
         #region Fields
-        private string name;
+        private string answerName;
         private int answerId;
         private AnswerModel currentAnswer;
-        private ICommand getAnswerCmd;
-        private ICommand saveAnswerCmd;
         #endregion
         #region Properties
 
-        public string PageName
+        public string AnswerName
         {
             get
             {
-                return "Answers";
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return name;
+                return answerName;
             }
 
             set
             {
-                name = value;
-                RaisePropertyChanged("Name");
+                answerName = value;
+                RaisePropertyChanged("AnswerName");
             }
         }
 
@@ -58,44 +49,8 @@ namespace QuizCreator.ViewModels
             }
         }
 
-        public ICommand GetAnswerCmd
-        {
-            get
-            {
-                if(getAnswerCmd == null)
-                {
-                    //getAnswerCmd = new RelayCommand(
-                    //    param => GetAnswer(),
-                    //    param => AnswerId > 0);
-                }
-                return getAnswerCmd;
-            }
 
-            set
-            {
-                getAnswerCmd = value;
-            }
-        }
-
-        public ICommand SaveAnswerCmd
-        {
-            get
-            {
-                if (saveAnswerCmd == null)
-                {
-                    //saveAnswerCmd = new RelayCommand(
-                    //    param => SaveAnswer(),
-                    //    param => (CurrentAnswer != null)
-                    //);
-                }
-                return saveAnswerCmd;
-            }
-
-            set
-            {
-                saveAnswerCmd = value;
-            }
-        }
+       
 
         public AnswerModel CurrentAnswer
         {
@@ -112,19 +67,6 @@ namespace QuizCreator.ViewModels
         }
         #endregion
         #region Methods
-        private void GetAnswer()
-        {
-            AnswerModel ans = new AnswerModel();
-            ans.AnswerId = this.AnswerId;
-            ans.Name = "Answer Name 1";
-            ans.IsValid = false;
-            CurrentAnswer = ans;
-            
-        }
-        private void SaveAnswer()
-        {
-
-        }
         #endregion
     }
 }

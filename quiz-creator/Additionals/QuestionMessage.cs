@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace QuizCreator.Additionals
 {
-    public class MVVMMessage
+    public class QuestionMessage
     {
-        public string Message { get; set; }
-
+        public QuestionModel Question { get; set; }
     }
 }
