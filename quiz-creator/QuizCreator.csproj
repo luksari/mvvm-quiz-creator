@@ -141,6 +141,7 @@
     <Compile Include="Additionals\AnswerMessage.cs" />
     <Compile Include="Additionals\IFrameNavigationService.cs" />
     <Compile Include="Additionals\IPageViewModel.cs" />
+    <Compile Include="Additionals\MouseOverHelpers.cs" />
     <Compile Include="Additionals\MVVMMessage.cs" />
     <Compile Include="Additionals\FrameNavigationService.cs" />
     <Compile Include="Additionals\QuestionMessage.cs" />
@@ -159,7 +160,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\QuizAnswersViewModel.cs" />
     <Compile Include="ViewModels\QuizListViewModel.cs" />
-    <Compile Include="ViewModels\QuizQuestionsViewModel.cs" />
+    <Compile Include="ViewModels\QuizQuestionViewModel.cs" />
     <Compile Include="ViewModels\QuizStartViewModel.cs" />
     <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -169,8 +170,8 @@
     <Compile Include="Views\QuizListView.xaml.cs">
       <DependentUpon>QuizListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuizQuestionsView.xaml.cs">
-      <DependentUpon>QuizQuestionsView.xaml</DependentUpon>
+    <Compile Include="Views\QuizQuestionView.xaml.cs">
+      <DependentUpon>QuizQuestionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuizStartView.xaml.cs">
       <DependentUpon>QuizStartView.xaml</DependentUpon>
@@ -198,7 +199,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QuizQuestionsView.xaml">
+    <Page Include="Views\QuizQuestionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -76,6 +76,7 @@ namespace QuizCreator.ViewModels
             get;
             private set;
         }
+        public RelayCommand<QuizModel> MouseOverBindQuizCmd { get; private set; }
         public RelayCommand NavigateToQuizViewCmd { get; private set;}
 
         public RelayCommand SaveToJsonCmd
@@ -95,8 +96,12 @@ namespace QuizCreator.ViewModels
             DeleteQuizCmd = new RelayCommand<QuizModel>(
                 param => DeleteQuiz(param),
                 CurrentQuiz != null);
+            //MouseOverBindQuizCmd = new RelayCommand<QuizModel>(
+            //        param => MouseOverBindQuiz(param),
+            //        CurrentQuiz != null            
+            //    );
 
-
+            
             Messenger.Default.Register<MVVMMessage>(this,this.SaveMessage);
             Messenger.Default.Register<string>(this, this.HandleQuizMessage);
 
@@ -110,13 +115,24 @@ namespace QuizCreator.ViewModels
         private void HandleQuizMessage(string msg)
         {
             CurrentQuiz.QuizName = msg;
-            Console.WriteLine(msg);
         }
+        //private void MouseOverBindQuiz(QuizModel selectedQuiz)
+        //{
+        //    try
+        //    {
+        //        CurrentQuiz = selectedQuiz;
+        //        Console.WriteLine(selectedQuiz.QuizName);
+
+        //    }
+        //    catch (NullReferenceException) { }
+        //}
         private void AddQuiz()
         {
             CurrentQuiz = new QuizModel { QuizName = QuizName, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
 
             QuizList.Add(CurrentQuiz);
+
+            QuizName = string.Empty;
 
             SaveToJson();
         }
@@ -140,6 +156,7 @@ namespace QuizCreator.ViewModels
             try
             {
                 string newJson = JsonConvert.SerializeObject(QuizList);
+                Console.WriteLine(newJson);
                 using (StreamWriter writer = File.CreateText("data.json"))
                 {
                     await writer.WriteAsync(newJson);

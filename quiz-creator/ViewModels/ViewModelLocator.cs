@@ -67,11 +67,11 @@ namespace QuizCreator.ViewModels
                 return ServiceLocator.Current.GetInstance<QuizAnswersViewModel>();
             }
         }
-        public QuizQuestionsViewModel Questions
+        public QuizQuestionViewModel Question
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<QuizQuestionsViewModel>();
+                return ServiceLocator.Current.GetInstance<QuizQuestionViewModel>();
             }
         }
 
@@ -85,6 +85,8 @@ namespace QuizCreator.ViewModels
             navigationService.Configure("Start", new Uri("../Views/QuizStartView.xaml", UriKind.Relative));
             navigationService.Configure("QuizList", new Uri("../Views/QuizListView.xaml", UriKind.Relative));
             navigationService.Configure("Quiz", new Uri("../Views/QuizView.xaml", UriKind.Relative));
+            navigationService.Configure("Question", new Uri("../Views/QuizQuestionView.xaml", UriKind.Relative));
+            navigationService.Configure("Answer", new Uri("../Views/QuizAnswerView.xaml", UriKind.Relative));
 
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
 
@@ -93,7 +95,7 @@ namespace QuizCreator.ViewModels
             SimpleIoc.Default.Register<QuizStartViewModel>(true);
             SimpleIoc.Default.Register<QuizListViewModel>(true);
             SimpleIoc.Default.Register<QuizViewModel>(true);
-            SimpleIoc.Default.Register<QuizQuestionsViewModel>(true);
+            SimpleIoc.Default.Register<QuizQuestionViewModel>(true);
             SimpleIoc.Default.Register<QuizAnswersViewModel>(true);
 
 

@@ -47,7 +47,7 @@ namespace QuizCreator.Models
                 if (value != answersList)
                 {
                     answersList = value;
-                    RaisePropertyChanged("AnswerList");
+                    RaisePropertyChanged("AnswersList");
                 }
             }
         }

@@ -52,6 +52,9 @@
                 <TextBox   Margin="0, 10, 0, 0" x:Name="textBoxQuestionName" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
                        SelectionBrush="#7200D70A" Foreground="#FF21272C" 
                        Text="{Binding QuestionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"          >
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding AddQuestionCmd}"/>
+                    </TextBox.InputBindings>
                 </TextBox>
                 <Button
                         Foreground="#FFFFFFFF" Content="Add Question" FontSize="18"
@@ -89,7 +92,7 @@
                             <GridViewColumn Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Enter Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
+                                        <Button Content="Add Answers" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
                                             <Button.InputBindings>
                                                 <MouseBinding Gesture="LeftClick" 
                                                      Command="{Binding DataContext.NavigateToQuestionViewCmd, 
@@ -103,7 +106,7 @@
                             <GridViewColumn Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Delete Quiz" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
+                                        <Button Content="Delete Question" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FFD65926">
                                             <Button.InputBindings>
                                                 <MouseBinding Gesture="LeftClick" 
                                                      Command="{Binding DataContext.DeleteQuestionCmd, 

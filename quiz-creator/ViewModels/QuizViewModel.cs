@@ -32,6 +32,7 @@ namespace QuizCreator.ViewModels
             DeleteQuestionCmd = new RelayCommand<QuestionModel>(
                 param => DeleteQuestion(param),
                 CurrentQuestion != null);
+            NavigateToQuestionViewCmd = new RelayCommand(NavigateToQuestionView);
 
             Messenger.Default.Register<QuizMessage>(this, this.HandleQuizMessage);
 
@@ -55,10 +56,14 @@ namespace QuizCreator.ViewModels
 
             QuestionsList.Add(CurrentQuestion);
 
+            QuestionName = string.Empty;
+
+                
         }
         private void DeleteQuestion(QuestionModel currentQuestion)
         {
             QuestionsList.Remove(currentQuestion);
+
         }
         private void HandleQuizMessage(QuizMessage message)
         {
@@ -66,14 +71,17 @@ namespace QuizCreator.ViewModels
             this.QuizId = message.Quiz.QuizId;
             this.QuestionsList = message.Quiz.QuestionsList;
         }
+        private void NavigateToQuestionView()
+        {
+            Messenger.Default.Send<QuestionMessage>(new QuestionMessage {
+                Question = CurrentQuestion
+            });
+
+           navigationService.NavigateTo("Question");
+        }
         #endregion
         #region Props / Commands
         public RelayCommand SaveQuizCmd
-        {
-            get;
-            private set;
-        }
-        public RelayCommand<string> ChangeQuizNameCmd
         {
             get;
             private set;
@@ -104,8 +112,8 @@ namespace QuizCreator.ViewModels
             {
                 quizName = value;
                 RaisePropertyChanged("QuizName");
-                Messenger.Default.Send<string>(value);
 
+                Messenger.Default.Send<string>(value);
             }
         }
 
