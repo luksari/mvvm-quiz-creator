@@ -90,7 +90,6 @@ namespace QuizCreator.ViewModels
 
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
 
-
             SimpleIoc.Default.Register<MainWindowViewModel>(true);
             SimpleIoc.Default.Register<QuizStartViewModel>(true);
             SimpleIoc.Default.Register<QuizListViewModel>(true);
