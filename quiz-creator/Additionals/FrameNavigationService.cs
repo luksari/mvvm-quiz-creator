@@ -1,4 +1,4 @@
-﻿using FirstFloor.ModernUI.Windows.Controls;
+﻿
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;

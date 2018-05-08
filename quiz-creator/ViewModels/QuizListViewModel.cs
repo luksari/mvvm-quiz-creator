@@ -7,6 +7,7 @@ using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ using System.Windows.Input;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizListViewModel : ViewModelBase
+    public class QuizListViewModel : ViewModelBase, IDataErrorInfo
     {
         #region Fields
         private ObservableCollection<QuizModel> quizList;
@@ -34,6 +35,7 @@ namespace QuizCreator.ViewModels
 
             set
             {
+               
                 quizName = value;
                 RaisePropertyChanged("QuizName");
             }
@@ -90,16 +92,12 @@ namespace QuizCreator.ViewModels
         {
             this.navigationService = navigationService;
              
-            AddQuizCmd = new RelayCommand(AddQuiz);
+            AddQuizCmd = new RelayCommand(AddQuiz, IsValid);
             SaveToJsonCmd = new RelayCommand(SaveToJson);
             NavigateToQuizViewCmd = new RelayCommand(NavigateToQuizView);
             DeleteQuizCmd = new RelayCommand<QuizModel>(
                 param => DeleteQuiz(param),
                 CurrentQuiz != null);
-            //MouseOverBindQuizCmd = new RelayCommand<QuizModel>(
-            //        param => MouseOverBindQuiz(param),
-            //        CurrentQuiz != null            
-            //    );
 
             
             Messenger.Default.Register<MVVMMessage>(this,this.SaveMessage);
@@ -116,18 +114,15 @@ namespace QuizCreator.ViewModels
         {
             CurrentQuiz.QuizName = msg;
         }
-        //private void MouseOverBindQuiz(QuizModel selectedQuiz)
-        //{
-        //    try
-        //    {
-        //        CurrentQuiz = selectedQuiz;
-        //        Console.WriteLine(selectedQuiz.QuizName);
-
-        //    }
-        //    catch (NullReferenceException) { }
-        //}
+        private bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(QuizName) || string.IsNullOrEmpty(QuizName)) return false;
+            return true;
+        }
+        
         private void AddQuiz()
         {
+
             CurrentQuiz = new QuizModel { QuizName = QuizName, QuizId = generateID(), QuestionsList = new ObservableCollection<QuestionModel>() };
 
             QuizList.Add(CurrentQuiz);
@@ -156,7 +151,7 @@ namespace QuizCreator.ViewModels
             try
             {
                 string newJson = JsonConvert.SerializeObject(QuizList);
-                Console.WriteLine(newJson);
+                
                 using (StreamWriter writer = File.CreateText("data.json"))
                 {
                     await writer.WriteAsync(newJson);
@@ -181,6 +176,26 @@ namespace QuizCreator.ViewModels
             QuizList.Remove(currentQuiz);
 
             SaveToJson();
+        }
+        #endregion
+        #region IDataErrorInfo Members
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "QuizName")
+                {
+                    if (string.IsNullOrEmpty(QuizName))
+                        result = "Please enter a Quiz Name";
+                }
+
+                return result;
+            }
         }
         #endregion
     }
