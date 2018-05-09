@@ -6,13 +6,14 @@ using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizQuestionViewModel : ViewModelBase
+    public class QuizQuestionViewModel : ViewModelBase, IDataErrorInfo
     {
         #region Fields
         private string questionName;
@@ -28,17 +29,27 @@ namespace QuizCreator.ViewModels
         {
             this.navigationService = navigationService;
 
-            AddAnswerCmd = new RelayCommand(AddAnswer);
+            AddAnswerCmd = new RelayCommand(AddAnswer, IsAnswerLooksAwesome);
             DeleteAnswerCmd = new RelayCommand<AnswerModel>(
                 param => DeleteAnswer(param),
                 CurrentAnswer != null
                 );
-            SaveQuestionCmd = new RelayCommand(SaveQuestion);
+            SaveQuestionCmd = new RelayCommand(SaveQuestion, IsQuestionLooksAwesome);
 
             Messenger.Default.Register<QuestionMessage>(this, this.HandleQuestionMessage);
         }
         #endregion
         #region Methods
+        private bool IsQuestionLooksAwesome()
+        {
+            if(string.IsNullOrEmpty(QuestionName) || string.IsNullOrWhiteSpace(QuestionName)) { return false; }
+            return true;
+        }
+        private bool IsAnswerLooksAwesome()
+        {
+            if (string.IsNullOrEmpty(AnswerName) || string.IsNullOrWhiteSpace(AnswerName)) { return false; }
+            return true;
+        }
         private void DeleteAnswer(AnswerModel currentAnswer)
         {
             AnswersList.Remove(CurrentAnswer);
@@ -74,6 +85,7 @@ namespace QuizCreator.ViewModels
             return Guid.NewGuid();
         }
         #endregion
+
         #region Properties / CMDS
         public RelayCommand AddAnswerCmd { get; private set; }
         public RelayCommand SaveQuestionCmd { get; private set; }
@@ -149,6 +161,30 @@ namespace QuizCreator.ViewModels
             {
                 answerName = value;
                 RaisePropertyChanged("AnswerName");
+            }
+        }
+        #endregion
+
+        #region IDataErrorInfo Members
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "AnswerName")
+                {
+                    if (string.IsNullOrEmpty(AnswerName))
+                        result = "Please enter an Answer Name";
+                }
+                else if (columnName == "QuestionName")
+                    if (string.IsNullOrEmpty(QuestionName))
+                        result = "Please enter a Question Name";
+
+                return result;
             }
         }
         #endregion

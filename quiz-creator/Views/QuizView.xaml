@@ -21,6 +21,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
     </UserControl.Resources>
     
     <Grid  Margin="25, 25, 25, 25">
@@ -43,15 +44,19 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
             <StackPanel>
-                <TextBox   x:Name="textBoxQuizName" FontSize="12" FontFamily="Lato" BorderBrush="{x:Null}" 
+                <TextBox   x:Name="textBoxQuizName" FontSize="12" FontFamily="Lato"
                        SelectionBrush="#7200D70A" Foreground="#FF21272C"
                        Width="150" HorizontalAlignment="Left"
-                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                       Text="{Binding QuizName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                    <TextBox.Text>
+                        <Binding Path="QuizName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </TextBox.Text>
                 </TextBox>
-                <TextBox   Margin="0, 10, 0, 0" x:Name="textBoxQuestionName" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
-                       SelectionBrush="#7200D70A" Foreground="#FF21272C" 
-                       Text="{Binding QuestionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"          >
+                <TextBox x:Name="textBoxQuestionName"  FontSize="32" FontFamily="Lato" 
+                     SelectionBrush="#7200D70A" Foreground="#FF21272C" Margin="0, 10, 0, 0" >
+                    <TextBox.Text>
+                        <Binding Path="QuestionName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </TextBox.Text>
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddQuestionCmd}"/>
                     </TextBox.InputBindings>
@@ -82,14 +87,14 @@
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
-                            <GridViewColumn Header="Name" Width="350">
+                            <GridViewColumn Header="Name" Width="400">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock FontSize="16" Text="{Binding QuestionName}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="100">
+                            <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Add Answers" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
@@ -103,7 +108,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="100">
+                            <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Delete Question" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FFD65926">

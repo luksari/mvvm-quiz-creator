@@ -45,15 +45,19 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
             <StackPanel>
-                <TextBox   x:Name="textBoxQuestionName" FontSize="12" FontFamily="Lato" BorderBrush="{x:Null}" 
+                <TextBox   x:Name="textBoxQuestionName" FontSize="12" FontFamily="Lato"
                        SelectionBrush="#7200D70A" Foreground="#FF21272C"
                        Width="150" HorizontalAlignment="Left"
-                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                       Text="{Binding QuestionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                    <TextBox.Text>
+                        <Binding Path="QuestionName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </TextBox.Text>
                 </TextBox>
-                <TextBox   Margin="0, 10, 0, 0" x:Name="textBoxAnswerName" FontSize="32" FontFamily="Lato" BorderBrush="{x:Null}" 
-                       SelectionBrush="#7200D70A" Foreground="#FF21272C" 
-                       Text="{Binding AnswerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"          >
+                <TextBox x:Name="textBoxAnswerName"  FontSize="32" FontFamily="Lato" 
+                     SelectionBrush="#7200D70A" Foreground="#FF21272C" Margin="0, 10, 0, 0" >
+                    <TextBox.Text>
+                        <Binding Path="AnswerName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </TextBox.Text>
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddAnswerCmd}"/>
                     </TextBox.InputBindings>
@@ -84,7 +88,7 @@
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
-                            <GridViewColumn Header="Name" Width="350">
+                            <GridViewColumn Header="Name" Width="400">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock FontSize="16" Text="{Binding AnswerName}"></TextBlock>
@@ -98,7 +102,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="100">
+                            <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Edit Answer" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FF1D986F">
@@ -112,7 +116,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="100">
+                            <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Delete Answer" Padding="5" FontSize="13" BorderBrush="{x:Null}" Foreground="#FFFFFFFF" Background="#FFD65926">

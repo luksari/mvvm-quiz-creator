@@ -6,6 +6,7 @@ using QuizCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace QuizCreator.ViewModels
 {
-    public class QuizViewModel : ViewModelBase
+    public class QuizViewModel : ViewModelBase, IDataErrorInfo
     {
         #region Fields
         private string quizName;
@@ -27,8 +28,9 @@ namespace QuizCreator.ViewModels
         public QuizViewModel(IFrameNavigationService navigationService)
         {
             this.navigationService = navigationService;
-            SaveQuizCmd = new RelayCommand(SaveQuiz);
-            AddQuestionCmd = new RelayCommand(AddQuestion);
+            SaveQuizCmd = new RelayCommand(SaveQuiz, IsQuizLooksAwesome);
+            AddQuestionCmd = new RelayCommand(AddQuestion, IsQuestionLooksAwesome);
+
             DeleteQuestionCmd = new RelayCommand<QuestionModel>(
                 param => DeleteQuestion(param),
                 CurrentQuestion != null);
@@ -39,6 +41,18 @@ namespace QuizCreator.ViewModels
         }
         #endregion
         #region Methods
+        private bool IsQuestionLooksAwesome()
+        {
+            if (string.IsNullOrEmpty(QuestionName) || string.IsNullOrWhiteSpace(QuestionName)) { return false; }
+            return true;
+        }
+
+        private bool IsQuizLooksAwesome()
+        {
+            if (string.IsNullOrEmpty(QuizName) || string.IsNullOrWhiteSpace(QuizName)) { return false; }
+            return true;
+        }
+
         private void SaveQuiz()
         {
             Messenger.Default.Send<MVVMMessage>( 
@@ -170,6 +184,30 @@ namespace QuizCreator.ViewModels
             {
                 questionName = value;
                 RaisePropertyChanged("QuestionName");
+            }
+        }
+        #endregion
+
+        #region IDataErrorInfo Members
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "QuizName")
+                {
+                    if (string.IsNullOrEmpty(QuizName))
+                        result = "Please enter a Quiz Name";
+                }
+                else if(columnName == "QuestionName")
+                    if (string.IsNullOrEmpty(QuestionName))
+                        result = "Please enter a Question Name";
+
+                return result;
             }
         }
         #endregion

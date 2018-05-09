@@ -50,15 +50,14 @@
                      SelectionBrush="#7200D70A" Foreground="#FF21272C" >
                     <TextBox.Text>
                         <Binding Path="QuizName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
-
                     </TextBox.Text>
-                         
-                <TextBox.InputBindings>
-                    <KeyBinding Key="Return" Command="{Binding AddQuizCmd}"/>
-                </TextBox.InputBindings>
-            </TextBox>
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding AddQuizCmd}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
                 <Button
-                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36" Width="500" 
+                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36" Width="500"
+                    Background="#FF1D986F" Foreground="#FFFFFFFF"
                     BorderBrush="{x:Null}" FontFamily="Lato Black"     
                     Command="{Binding AddQuizCmd}"
                     >

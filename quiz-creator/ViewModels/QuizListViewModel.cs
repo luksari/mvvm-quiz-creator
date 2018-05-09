@@ -92,8 +92,8 @@ namespace QuizCreator.ViewModels
         {
             this.navigationService = navigationService;
              
-            AddQuizCmd = new RelayCommand(AddQuiz, IsValid);
-            SaveToJsonCmd = new RelayCommand(SaveToJson);
+            AddQuizCmd = new RelayCommand(AddQuiz, IsQuizLooksAwesome);
+            SaveToJsonCmd = new RelayCommand(SaveToJson, IsQuizListNotEmpty);
             NavigateToQuizViewCmd = new RelayCommand(NavigateToQuizView);
             DeleteQuizCmd = new RelayCommand<QuizModel>(
                 param => DeleteQuiz(param),
@@ -114,9 +114,14 @@ namespace QuizCreator.ViewModels
         {
             CurrentQuiz.QuizName = msg;
         }
-        private bool IsValid()
+        private bool IsQuizLooksAwesome()
         {
             if (string.IsNullOrWhiteSpace(QuizName) || string.IsNullOrEmpty(QuizName)) return false;
+            return true;
+        }
+        private bool IsQuizListNotEmpty()
+        {
+            if (QuizList.Count < 1 || QuizList == null) return false;
             return true;
         }
         
