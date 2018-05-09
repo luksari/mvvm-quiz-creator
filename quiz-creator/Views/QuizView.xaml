@@ -62,8 +62,8 @@
                     </TextBox.InputBindings>
                 </TextBox>
                 <Button
-                        Foreground="#FFFFFFFF" Content="Add Question" FontSize="18"
-                        Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
+                         Content="Add Question" FontSize="18"
+                         BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
                         Command="{Binding AddQuestionCmd, Mode=OneWay}" Grid.ColumnSpan="2" 
                         >
                     <Button.Effect>
@@ -126,8 +126,8 @@
                     </ListView.View>
                 </ListView>
                 <Button
-                        Foreground="#FFFFFFFF" Content="Save Quiz" FontSize="18"
-                        Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
+                         Content="Save Quiz" FontSize="36"
+                         BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
                         Command="{Binding SaveQuizCmd, Mode=OneWay}" Grid.ColumnSpan="2" 
                         >
                     <Button.Effect>

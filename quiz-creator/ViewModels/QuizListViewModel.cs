@@ -25,7 +25,7 @@ namespace QuizCreator.ViewModels
         private string quizName;
         private IFrameNavigationService navigationService;
         #endregion
-        #region Properties
+        #region Properties and Commands
         public string QuizName
         {
             get
@@ -35,8 +35,9 @@ namespace QuizCreator.ViewModels
 
             set
             {
-               
-                quizName = value;
+
+                quizName = value;   
+
                 RaisePropertyChanged("QuizName");
             }
         }
@@ -78,7 +79,6 @@ namespace QuizCreator.ViewModels
             get;
             private set;
         }
-        public RelayCommand<QuizModel> MouseOverBindQuizCmd { get; private set; }
         public RelayCommand NavigateToQuizViewCmd { get; private set;}
 
         public RelayCommand SaveToJsonCmd
@@ -94,14 +94,16 @@ namespace QuizCreator.ViewModels
              
             AddQuizCmd = new RelayCommand(AddQuiz, IsQuizLooksAwesome);
             SaveToJsonCmd = new RelayCommand(SaveToJson, IsQuizListNotEmpty);
-            NavigateToQuizViewCmd = new RelayCommand(NavigateToQuizView);
+            NavigateToQuizViewCmd = new RelayCommand(NavigateToQuizView, CurrentQuiz != null);
             DeleteQuizCmd = new RelayCommand<QuizModel>(
                 param => DeleteQuiz(param),
                 CurrentQuiz != null);
 
             
             Messenger.Default.Register<MVVMMessage>(this,this.SaveMessage);
-            Messenger.Default.Register<string>(this, this.HandleQuizMessage);
+
+            Messenger.Default.Register<QuizMessage>(this, this.HandleQuizMessage);
+
 
             LoadQuizes();
 
@@ -110,9 +112,9 @@ namespace QuizCreator.ViewModels
 
         #endregion
         #region Methods
-        private void HandleQuizMessage(string msg)
+        private void HandleQuizMessage(QuizMessage msg)
         {
-            CurrentQuiz.QuizName = msg;
+            CurrentQuiz.QuizName = msg.Quiz.QuizName;
         }
         private bool IsQuizLooksAwesome()
         {

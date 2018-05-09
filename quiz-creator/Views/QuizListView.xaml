@@ -25,8 +25,8 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    
-        <Grid>
+
+    <Grid Margin="25, 25, 25, 25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -46,7 +46,7 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <StackPanel >
-                <TextBox x:Name="textBoxQuizName" Width="500" FontSize="32" FontFamily="Lato" 
+                <TextBox x:Name="textBoxQuizName" FontSize="32" FontFamily="Lato" 
                      SelectionBrush="#7200D70A" Foreground="#FF21272C" >
                     <TextBox.Text>
                         <Binding Path="QuizName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
@@ -56,8 +56,8 @@
                     </TextBox.InputBindings>
                 </TextBox>
                 <Button
-                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36" Width="500"
-                    Background="#FF1D986F" Foreground="#FFFFFFFF"
+                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36" 
+                    
                     BorderBrush="{x:Null}" FontFamily="Lato Black"     
                     Command="{Binding AddQuizCmd}"
                     >
@@ -65,12 +65,11 @@
                         <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
                     </Button.Effect>
                 </Button>
-                <ListView x:Name="ListViewQuizList"  Margin="0,25,0,0" Width="500" Height="300" 
+                <ListView x:Name="ListViewQuizList" Height="300"  
                            ItemsSource="{Binding QuizList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                            AlternationCount="2" BorderThickness="0" BorderBrush="{x:Null}" 
                            IsSynchronizedWithCurrentItem="True" Foreground="#FF21272C"
-                           SelectedItem="{Binding CurrentQuiz}"
-                           
+                           SelectedItem="{Binding CurrentQuiz, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                           
                           >
             
                     
@@ -85,7 +84,7 @@
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
-                            <GridViewColumn Header="Name" Width="300">
+                            <GridViewColumn Header="Name" Width="400">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock FontSize="16" Text="{Binding QuizName}"></TextBlock>
@@ -126,8 +125,8 @@
                         
                 </ListView>
                 <Button
-                    Margin="0,0,0,0" Foreground="#FFFFFFFF" Content="Save Quizes" FontSize="36" Width="500" 
-                    Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"     
+                    Margin="0,0,0,0"  Content="Save Quizes" FontSize="36"
+                    BorderBrush="{x:Null}" FontFamily="Lato Black"     
                     Command="{Binding SaveToJsonCmd}"
                     >
                     <Button.Effect>

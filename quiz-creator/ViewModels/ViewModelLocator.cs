@@ -60,11 +60,11 @@ namespace QuizCreator.ViewModels
                 return ServiceLocator.Current.GetInstance<QuizViewModel>();
             }
         }
-        public QuizAnswersViewModel Answers
+        public QuizAnswerViewModel Answer
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<QuizAnswersViewModel>();
+                return ServiceLocator.Current.GetInstance<QuizAnswerViewModel>();
             }
         }
         public QuizQuestionViewModel Question
@@ -95,7 +95,7 @@ namespace QuizCreator.ViewModels
             SimpleIoc.Default.Register<QuizListViewModel>(true);
             SimpleIoc.Default.Register<QuizViewModel>(true);
             SimpleIoc.Default.Register<QuizQuestionViewModel>(true);
-            SimpleIoc.Default.Register<QuizAnswersViewModel>(true);
+            SimpleIoc.Default.Register<QuizAnswerViewModel>(true);
 
 
 

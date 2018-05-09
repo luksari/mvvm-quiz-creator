@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="QuizCreator.Views.QuizAnswerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuizCreator.Views"
+             xmlns:models="clr-namespace:QuizCreator.Models"
+             xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding Answer, Source={StaticResource Locator}}">
+
+
+    <UserControl.Resources>
+
+
+    </UserControl.Resources>
+    <Grid Margin="25, 25, 25, 25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
+            <StackPanel>
+                <TextBox x:Name="textBoxAnswerName"  FontSize="32" FontFamily="Lato" 
+                     SelectionBrush="#7200D70A" Foreground="#FF21272C" Margin="0, 10, 0, 0" >
+                    <TextBox.Text>
+                        <Binding Path="AnswerName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </TextBox.Text>
+                </TextBox>
+                <CheckBox x:Name="checkBoxIsValid" Margin="0, 10, 0, 0" BorderBrush="{x:Null}" Foreground="Black" Content="Is Answer Valid">
+                    <CheckBox.IsChecked>
+                        <Binding Path="IsValid" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
+                    </CheckBox.IsChecked>
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <Button
+                        Content="Save Answer" FontSize="36" Margin="0, 10, 0, 0"
+                         BorderBrush="{x:Null}" FontFamily="Lato Black" Grid.Row="4"
+                        Command="{Binding SaveAnswerCmd, Mode=OneWay}" Grid.ColumnSpan="2" 
+                        >
+                    <Button.Effect>
+                        <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
+                    </Button.Effect>
+
+                </Button>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+    
+    
+</UserControl>

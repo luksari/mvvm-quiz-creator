@@ -10,49 +10,49 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <viewmodels:ViewModelLocator x:Key="Locator" />
-        
-    <SolidColorBrush x:Key="WindowColor" Color="#FF21272C" />
-    <SolidColorBrush x:Key="WindowBackColor" Color="#FF21272C" />
-    <SolidColorBrush x:Key="WindowForeColor" Color="#FFD1D7DC" />
-    <SolidColorBrush x:Key="WindowForeHighlightColor" Color="#FFD1D7DC" />
-    <SolidColorBrush x:Key="WindowButtonColor" Color="#FF21272C" />
-    <SolidColorBrush x:Key="WindowButtonOverColor" Color="#FF2D353A" />
-    <SolidColorBrush x:Key="WindowButtonPressedColor" Color="#FF14181B" />
-    <sw:WindowMinimizeCommand x:Key="MinimizeCommand">
+
+        <SolidColorBrush x:Key="WindowColor" Color="#FF21272C" />
+        <SolidColorBrush x:Key="WindowBackColor" Color="#FF21272C" />
+        <SolidColorBrush x:Key="WindowForeColor" Color="#FFD1D7DC" />
+        <SolidColorBrush x:Key="WindowForeHighlightColor" Color="#FFD1D7DC" />
+        <SolidColorBrush x:Key="WindowButtonColor" Color="#FF21272C" />
+        <SolidColorBrush x:Key="WindowButtonOverColor" Color="#FF2D353A" />
+        <SolidColorBrush x:Key="WindowButtonPressedColor" Color="#FF14181B" />
+        <sw:WindowMinimizeCommand x:Key="MinimizeCommand">
         </sw:WindowMinimizeCommand>
-    <sw:WindowMaximizeCommand x:Key="MaximizeCommand">
+        <sw:WindowMaximizeCommand x:Key="MaximizeCommand">
         </sw:WindowMaximizeCommand>
-    <sw:WindowCloseCommand x:Key="CloseCommand">
+        <sw:WindowCloseCommand x:Key="CloseCommand">
         </sw:WindowCloseCommand>
-    <Style TargetType="{x:Type Button}" x:Key="WindowButton">
-      <Setter Property="Height" Value="25" />
-      <Setter Property="Width" Value="25" />
-      <Setter Property="Background" Value="{StaticResource WindowButtonColor}" />
-      <Setter Property="Foreground" Value="{StaticResource WindowForeColor}" />
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="{x:Type Button}">
-            <Border Background="{TemplateBinding Background}">
-              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Border>
-            <ControlTemplate.Triggers>
-              <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource WindowButtonColor}" />
-                <Setter Property="Foreground" Value="{StaticResource WindowColor}" />
-              </Trigger>
-              <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource WindowButtonOverColor}" />
-                <Setter Property="Foreground" Value="{StaticResource WindowForeHighlightColor}" />
-              </Trigger>
-              <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource WindowButtonPressedColor}" />
-                <Setter Property="Foreground" Value="{StaticResource WindowForeColor}" />
-              </Trigger>
-            </ControlTemplate.Triggers>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
+        <Style TargetType="{x:Type Button}" x:Key="WindowButton">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="25" />
+            <Setter Property="Background" Value="{StaticResource WindowButtonColor}" />
+            <Setter Property="Foreground" Value="{StaticResource WindowForeColor}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource WindowButtonColor}" />
+                                <Setter Property="Foreground" Value="{StaticResource WindowColor}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource WindowButtonOverColor}" />
+                                <Setter Property="Foreground" Value="{StaticResource WindowForeHighlightColor}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource WindowButtonPressedColor}" />
+                                <Setter Property="Foreground" Value="{StaticResource WindowForeColor}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError"
@@ -82,11 +82,46 @@
             </Setter>
         </Style>
 
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF1C7D5E" Offset="1"/>
+                        <GradientStop Color="#FF1D986F" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border" BorderThickness="0"  Background="{TemplateBinding Background}" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.75" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" Value="#FFC3C3C3"/>
+                                <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
 
         <Style TargetType="{x:Type Image}" x:Key="WindowIcon">
-      <Setter Property="Height" Value="25" />
-      <Setter Property="Width" Value="25" />
-    </Style>
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="25" />
+        </Style>
         <ControlTemplate x:Key="WindowTemplate" TargetType="{x:Type Window}">
             <Grid Background="{StaticResource WindowBackColor}">
                 <Grid>
@@ -139,7 +174,7 @@
                 </MultiTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        
+
         <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
             <Setter Property="WindowStyle" Value="None" />
             <Setter Property="AllowsTransparency" Value="True" />
@@ -152,5 +187,5 @@
             <Setter Property="Template" Value="{StaticResource WindowTemplate}" />
         </Style>
 
-  </Application.Resources>
+    </Application.Resources>
 </Application>

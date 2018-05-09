@@ -37,10 +37,17 @@ namespace QuizCreator.ViewModels
             NavigateToQuestionViewCmd = new RelayCommand(NavigateToQuestionView);
 
             Messenger.Default.Register<QuizMessage>(this, this.HandleQuizMessage);
+            Messenger.Default.Register<QuestionMessage>(this, this.HandleQuestionNameMessage);
+
 
         }
         #endregion
         #region Methods
+        private void HandleQuestionNameMessage(QuestionMessage msg)
+        {
+            CurrentQuestion.QuestionName = msg.Question.QuestionName;
+        }
+
         private bool IsQuestionLooksAwesome()
         {
             if (string.IsNullOrEmpty(QuestionName) || string.IsNullOrWhiteSpace(QuestionName)) { return false; }
@@ -55,10 +62,17 @@ namespace QuizCreator.ViewModels
 
         private void SaveQuiz()
         {
+            Messenger.Default.Send<QuizMessage>(
+                new QuizMessage { Quiz = new QuizModel { QuizName = QuizName } }
+            );
+
             Messenger.Default.Send<MVVMMessage>( 
                 new MVVMMessage { Message = "SAVE" }
             );
+
             navigationService.NavigateTo("QuizList");
+
+
         }
         private Guid generateID()
         {
@@ -72,12 +86,18 @@ namespace QuizCreator.ViewModels
 
             QuestionName = string.Empty;
 
-                
+            Messenger.Default.Send<MVVMMessage>(
+                new MVVMMessage { Message = "SAVE" }
+            );
+
         }
         private void DeleteQuestion(QuestionModel currentQuestion)
         {
             QuestionsList.Remove(currentQuestion);
 
+            Messenger.Default.Send<MVVMMessage>(
+                new MVVMMessage { Message = "SAVE" }
+            );
         }
         private void HandleQuizMessage(QuizMessage message)
         {
@@ -87,9 +107,7 @@ namespace QuizCreator.ViewModels
         }
         private void NavigateToQuestionView()
         {
-            Messenger.Default.Send<QuestionMessage>(new QuestionMessage {
-                Question = CurrentQuestion
-            });
+           Messenger.Default.Send<QuestionMessage>(new QuestionMessage { Question = CurrentQuestion });
 
            navigationService.NavigateTo("Question");
         }
@@ -127,7 +145,7 @@ namespace QuizCreator.ViewModels
                 quizName = value;
                 RaisePropertyChanged("QuizName");
 
-                Messenger.Default.Send<string>(value);
+                
             }
         }
 

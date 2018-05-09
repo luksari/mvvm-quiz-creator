@@ -32,9 +32,9 @@
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <GroupBox BorderBrush="{x:Null}" Foreground="#FF21272C" BorderThickness="0">
                 <StackPanel >
-                    <Button  Margin="0,50,0,0" Foreground="#FFFFFFFF" 
+                    <Button  Margin="0,50,0,0" 
                              Content="Start Creating" FontSize="48" Width="500" Height="150" 
-                             Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
+                             BorderBrush="{x:Null}" FontFamily="Lato Black"
                              Command="{Binding NavigateToQuizListViewCmd}"
                              CommandParameter="{Binding }">
                     </Button>

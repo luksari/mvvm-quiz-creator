@@ -35,11 +35,21 @@ namespace QuizCreator.ViewModels
                 CurrentAnswer != null
                 );
             SaveQuestionCmd = new RelayCommand(SaveQuestion, IsQuestionLooksAwesome);
+            NavigateToAnswerViewCmd = new RelayCommand(NavigateToAnswerView, CurrentAnswer != null);
 
             Messenger.Default.Register<QuestionMessage>(this, this.HandleQuestionMessage);
+            Messenger.Default.Register<AnswerMessage>(this, this.HandleAnswerNameMessage);
+
         }
+
+
         #endregion
         #region Methods
+        private void HandleAnswerNameMessage(AnswerMessage msg)
+        {
+            CurrentAnswer.AnswerName = msg.Answer.AnswerName;
+            CurrentAnswer.IsValid = msg.Answer.IsValid;
+        }
         private bool IsQuestionLooksAwesome()
         {
             if(string.IsNullOrEmpty(QuestionName) || string.IsNullOrWhiteSpace(QuestionName)) { return false; }
@@ -53,6 +63,10 @@ namespace QuizCreator.ViewModels
         private void DeleteAnswer(AnswerModel currentAnswer)
         {
             AnswersList.Remove(CurrentAnswer);
+
+            Messenger.Default.Send<MVVMMessage>(
+                new MVVMMessage { Message = "SAVE" }
+            );
         }
         private void HandleQuestionMessage(QuestionMessage message)
         {
@@ -65,11 +79,17 @@ namespace QuizCreator.ViewModels
             Messenger.Default.Send<MVVMMessage>(
                 new MVVMMessage { Message = "SAVE" }
             );
+
+            Messenger.Default.Send<QuestionMessage>(
+                new QuestionMessage { Question = new QuestionModel { QuestionName = QuestionName } }
+            );
+
             navigationService.NavigateTo("Quiz");
         }
         private void NavigateToAnswerView()
         {
-            navigationService.NavigateTo("Answers");
+            Messenger.Default.Send<AnswerMessage>(new AnswerMessage { Answer = CurrentAnswer });
+            navigationService.NavigateTo("Answer");
         }
         private void AddAnswer()
         {
@@ -78,6 +98,10 @@ namespace QuizCreator.ViewModels
             AnswersList.Add(CurrentAnswer);
 
             AnswerName = string.Empty;
+
+            Messenger.Default.Send<MVVMMessage>(
+                new MVVMMessage { Message = "SAVE" }
+            );
 
         }
         private Guid generateID()
