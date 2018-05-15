@@ -23,7 +23,6 @@ namespace QuizCreator.ViewModels
         private Guid questionId;
         private IFrameNavigationService navigationService;
         #endregion
-
         #region Constructor
         public QuizQuestionViewModel(IFrameNavigationService navigationService)
         {
@@ -109,7 +108,6 @@ namespace QuizCreator.ViewModels
             return Guid.NewGuid();
         }
         #endregion
-
         #region Properties / CMDS
         public RelayCommand AddAnswerCmd { get; private set; }
         public RelayCommand SaveQuestionCmd { get; private set; }

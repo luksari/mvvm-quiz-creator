@@ -18,7 +18,7 @@ namespace QuizCreator.ViewModels
         IFrameNavigationService navigationService;
 
         #endregion
-
+        #region Constructor
         public MainWindowViewModel(IFrameNavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -28,16 +28,10 @@ namespace QuizCreator.ViewModels
             //Messenger.Default.Register<NavigationMessage>(this, this.HandleNavigationMessage);
 
         }
-
-        //private void HandleNavigationMessage(NavigationMessage msg)
-        //{
-        //    this.navigationService = msg.NavigationService;
-        //    Console.WriteLine(msg.NavigationService.CurrentPageKey);
-        //}
+        #endregion
         #region Properties / Commands
         //public RelayCommand NavigateToPreviousViewCmd { get; private set; }
         #endregion
-
         #region Methods
         //private void NavigateToPreviousView()
         //{

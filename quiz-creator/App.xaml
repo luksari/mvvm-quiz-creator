@@ -10,7 +10,6 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <viewmodels:ViewModelLocator x:Key="Locator" />
-
         <SolidColorBrush x:Key="WindowColor" Color="#FF21272C" />
         <SolidColorBrush x:Key="WindowBackColor" Color="#FF21272C" />
         <SolidColorBrush x:Key="WindowForeColor" Color="#FFD1D7DC" />
