@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizCreator"
         xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels"
-        xmlns:views="clr-namespace:QuizCreator.Views" Height="350" Width="525" 
+        xmlns:views="clr-namespace:QuizCreator.Views" 
+        Height="650" Width="650" 
         Style="{StaticResource CustomWindowStyle}" x:Name="QuizCreatorWindow" Icon="App.ico"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         >
@@ -15,7 +16,7 @@
         
     </Window.Resources>
 
-    <Grid Margin="0,2,0,-2.4" >
+    <Grid Margin="0,2,0,-2.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -33,12 +34,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
-            
-            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"
-                       >
-
+            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"                    >
                 <TextBlock Grid.Row ="0" FontFamily="after night" FontSize="56" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
-            
             </DockPanel>
             <Frame  Source="./Views/QuizStartView.xaml" x:Name="MainFrame" 
                     NavigationUIVisibility="Hidden"

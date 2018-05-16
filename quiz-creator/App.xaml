@@ -5,6 +5,7 @@
              xmlns:sw="clr-namespace:QuizCreator.StyleableWindow" 
              xmlns:viewmodels="clr-namespace:QuizCreator.ViewModels" 
              xmlns:views="clr-namespace:QuizCreator.Views" 
+             xmlns:my="clr-namespace:QuizCreator.Additionals"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
@@ -17,12 +18,20 @@
         <SolidColorBrush x:Key="WindowButtonColor" Color="#FF21272C" />
         <SolidColorBrush x:Key="WindowButtonOverColor" Color="#FF2D353A" />
         <SolidColorBrush x:Key="WindowButtonPressedColor" Color="#FF14181B" />
+
+        
         <sw:WindowMinimizeCommand x:Key="MinimizeCommand">
         </sw:WindowMinimizeCommand>
         <sw:WindowMaximizeCommand x:Key="MaximizeCommand">
         </sw:WindowMaximizeCommand>
         <sw:WindowCloseCommand x:Key="CloseCommand">
         </sw:WindowCloseCommand>
+
+        <Style x:Key="EntryFieldStyle" TargetType="Grid" >
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,0" />
+        </Style>
         <Style TargetType="{x:Type Button}" x:Key="WindowButton">
             <Setter Property="Height" Value="25" />
             <Setter Property="Width" Value="25" />
@@ -179,7 +188,14 @@
             <Setter Property="AllowsTransparency" Value="True" />
             <Setter Property="MinWidth" Value="800" />
             <Setter Property="MinHeight" Value="600" />
-            <Setter Property="Background" Value="#FFD1D7DC" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA8BACA" Offset="1"/>
+                        <GradientStop Color="#FFE0E9F0" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="BorderBrush" Value="#FFD1D7DC" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="#FF21272C" />
