@@ -205,7 +205,6 @@ namespace QuizCreator.ViewModels
             }
         }
         #endregion
-
         #region IDataErrorInfo Members
         public string Error
         {

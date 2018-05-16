@@ -33,14 +33,12 @@ namespace QuizCreator.ViewModels
             }
         }
         #endregion
-
         public QuizStartViewModel(IFrameNavigationService navigationService)
         {
             this.navigationService = navigationService;
 
             NavigateToQuizListViewCmd = new RelayCommand(NavigateToQuizList);
         }
-
         #region Methods
         private void NavigateToQuizList()
         {
