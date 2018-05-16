@@ -58,7 +58,7 @@
                     </my:WatermarkService.Watermark>
                 </TextBox>
                 <TextBox x:Name="textBoxAnswerName"  FontSize="32" FontFamily="Lato" 
-                     SelectionBrush="#7200D70A" Foreground="#FF21272C" Margin="0, 10, 0, 0" >
+                     SelectionBrush="#7200D70A" Foreground="#FF21272C">
                     <TextBox.Text>
                         <Binding Path="AnswerName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
                     </TextBox.Text>

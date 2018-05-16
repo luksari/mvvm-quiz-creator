@@ -60,8 +60,7 @@
                     </my:WatermarkService.Watermark>
                 </TextBox>
                 <Button
-                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36" 
-                    
+                    Margin="0,0,0,0"  Content="Add Quiz" FontSize="36"                   
                     BorderBrush="{x:Null}" FontFamily="Lato Black"     
                     Command="{Binding AddQuizCmd}"
                     >
