@@ -7,10 +7,7 @@
              xmlns:my="clr-namespace:QuizCreator.Additionals"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding Question, Source={StaticResource Locator}}"
-
-    >
-
+             DataContext="{Binding Question, Source={StaticResource Locator}}">
     <UserControl.Resources>
         <Style TargetType="ListViewItem">
             <Style.Triggers>
@@ -23,8 +20,6 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-
-
     <Grid Margin="25, 25, 25, 25">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -42,13 +37,11 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
             <StackPanel>
                 <TextBox   x:Name="textBoxQuestionName" FontSize="12" FontFamily="Lato"
                        SelectionBrush="#7200D70A" Foreground="#FF21272C"
-                       Width="150" HorizontalAlignment="Left"
+                       Width="300" HorizontalAlignment="Left"
                        Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
                     <TextBox.Text>
                         <Binding Path="QuestionName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True"/>
@@ -148,11 +141,8 @@
                     <Button.Effect>
                         <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
                     </Button.Effect>
-
                 </Button>
             </StackPanel>
         </DockPanel>
-
-
     </Grid>
 </UserControl>

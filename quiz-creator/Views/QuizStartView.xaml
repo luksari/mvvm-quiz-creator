@@ -9,8 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{Binding Start, Source={StaticResource Locator}}">
-    
-
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,7 +26,6 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <GroupBox BorderBrush="{x:Null}" Foreground="#FF21272C" BorderThickness="0">
                 <StackPanel >
@@ -41,7 +38,5 @@
                 </StackPanel>
             </GroupBox>
         </DockPanel>
-        
     </Grid>
-
 </UserControl>

@@ -13,7 +13,6 @@
              d:DesignHeight="400" 
              d:DesignWidth="500"
              DataContext="{Binding QuizList, Source={StaticResource Locator}}">
-
     <UserControl.Resources>
         <Style TargetType="ListViewItem">
             <Style.Triggers>
@@ -26,7 +25,6 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-
     <Grid Margin="25, 25, 25, 25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -44,7 +42,6 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <StackPanel >
                 <TextBox x:Name="textBoxQuizName" FontSize="32" FontFamily="Lato" 
@@ -74,13 +71,11 @@
                            IsSynchronizedWithCurrentItem="True" Foreground="#FF21272C"
                            SelectedItem="{Binding CurrentQuiz, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"                           
                           >
-            
-                    
                     <ListView.Effect>
                         <DropShadowEffect Opacity="0.2" Direction="90" RenderingBias="Quality" ShadowDepth="2"/>
                     </ListView.Effect>
                     <ListView.View>
-                        
+
                         <GridView>
                             <GridView.ColumnHeaderContainerStyle>
                                 <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -125,7 +120,6 @@
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
-                        
                 </ListView>
                 <Button
                     Margin="0,0,0,0"  Content="Save Quizes" FontSize="36"
@@ -138,6 +132,5 @@
                 </Button>
             </StackPanel>
         </DockPanel>
-
     </Grid>
 </UserControl>
